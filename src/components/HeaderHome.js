@@ -1,12 +1,16 @@
 import React from 'react'
 import Navigation from './Navigation'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const ContainerHeader = styled.div`
   background-image: url('/assets/images/header-background.jpg');
   background-size: cover;
   box-sizing: border-box;
   height: 500px;
+  a {
+    text-decoration: none;
+  }
 `
 
 const DiscoveryStyle = styled.button`
@@ -41,10 +45,13 @@ const HeaderHome = () => {
   return (
     <ContainerHeader>
       <Navigation />
-      <DiscoveryStyle>
-        <DiscoveryFont>Discovery</DiscoveryFont>
-        <DiscoveryArrow src="/assets/logo/arrow-right.svg" alt="" />
-      </DiscoveryStyle>
+
+      <Link to="/trips">
+        <DiscoveryStyle>
+          <DiscoveryFont>Discovery</DiscoveryFont>
+          <DiscoveryArrow src="/assets/logo/arrow-right.svg" alt="" />
+        </DiscoveryStyle>
+      </Link>
     </ContainerHeader>
   )
 }
