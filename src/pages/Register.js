@@ -25,7 +25,7 @@ const ContainerForm = styled.form`
 const StyledInputForm = styled.input`
   margin-top: 16px;
   height: 30px;
-  border-radius: 2px;
+  border-radius: 5px;
   border: 1px solid #333333;
 `
 const StyledButtonRegister = styled.input`
@@ -34,7 +34,7 @@ const StyledButtonRegister = styled.input`
   margin-bottom: 10px;
   height: 30px;
   width: 200px;
-  border-radius: 2px;
+  border-radius: 5px;
   border: 1px solid #333333;
   font-size: 14px;
   font-family: 'Fira Sans', sans-serif;
@@ -63,10 +63,11 @@ const StyledAgeForm = styled.input`
   margin-top: 16px;
   width: 40px;
   height: 30px;
-  border-radius: 2px;
+  border-radius: 5px;
   border: 1px solid #333333;
 `
 const GenderStyle = styled.select`
+  text-align: center;
   height: 35px;
   width: 160px;
   margin-left: 16px;
@@ -78,7 +79,7 @@ const StyledCityForm = styled.input`
   margin-top: 16px;
   width: 260px;
   height: 30px;
-  border-radius: 2px;
+  border-radius: 5px;
   border: 1px solid #333333;
 `
 
