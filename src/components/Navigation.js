@@ -72,7 +72,7 @@ const Navigation = () => {
         </Link>
       )}
       {isAuthenticated && (
-        <Link to="/post">
+        <Link to="/">
           <b>Post</b>
         </Link>
       )}
