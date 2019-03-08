@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   background-image: url('/assets/images/login-background.png');
-  height: 650px;
+  height: 100%;
   a {
     text-decoration: none;
     color: #2f80ed;
