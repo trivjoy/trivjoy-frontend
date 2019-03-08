@@ -2,10 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-image: url('/assets/images/register-background.png');
+    height: 100%;
+  }
+`
 const Container = styled.div`
-  background-image: url('/assets/images/register-background.png');
-  height: 650px;
   a {
     text-decoration: none;
     color: #2f80ed;
@@ -86,6 +91,7 @@ const StyledCityForm = styled.input`
 const Register = () => {
   return (
     <Container>
+      <GlobalStyle />
       <HeaderLoginAndRegister />
 
       <ContainerForm action="">
