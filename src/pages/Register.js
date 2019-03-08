@@ -22,22 +22,64 @@ const ContainerForm = styled.form`
   width: 500px;
   margin: 0 auto;
 `
-const StyledButtonForm = styled.input`
-  margin-top: 8px;
-  height: 25px;
+const StyledInputForm = styled.input`
+  margin-top: 16px;
+  height: 30px;
   border-radius: 2px;
   border: 1px solid #333333;
 `
-
-const GenderStyle = styled.select`
-  height: 28px;
+const StyledButtonRegister = styled.input`
+  margin-top: 15px;
+  margin-left: 150px;
+  margin-bottom: 10px;
+  height: 30px;
+  width: 200px;
+  border-radius: 2px;
   border: 1px solid #333333;
+  font-size: 14px;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #5bb9fd;
+  :hover {
+    cursor: pointer;
+    background-color: #68bffd;
+  }
 `
+
 const ExtraInformation = styled.div`
   display: flex;
   flex-direction: column;
   width: 500px;
   margin: 0 auto;
+`
+const ExtraInformationTop = styled.p`
+  font-size: 14px;
+  margin: 0px auto;
+`
+const ExtraInformationBottom = styled.b`
+  margin-top: 100px;
+  margin-left: 158px;
+`
+const StyledAgeForm = styled.input`
+  margin-top: 16px;
+  width: 40px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid #333333;
+`
+const GenderStyle = styled.select`
+  height: 35px;
+  width: 160px;
+  margin-left: 16px;
+  margin-right: 16px;
+  border: 1px solid #333333;
+`
+
+const StyledCityForm = styled.input`
+  margin-top: 16px;
+  width: 260px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid #333333;
 `
 
 const Register = () => {
@@ -47,30 +89,34 @@ const Register = () => {
 
       <ContainerForm action="">
         <TitleRegister>Join Us as a Trivjoy Member!</TitleRegister>
-        <StyledButtonForm type="text" placeholder="FullName" required />
-        <StyledButtonForm type="email" placeholder="Email" required />
-        <StyledButtonForm type="tel" placeholder="Telephone Number" required />
+        <StyledInputForm type="text" placeholder="FullName" required />
+        <StyledInputForm type="email" placeholder="Email" required />
+        <StyledInputForm type="tel" placeholder="Telephone Number" required />
         <div>
-          <StyledButtonForm type="number" placeholder="Age" required />
+          <StyledAgeForm type="number" placeholder="Age" required />
           <GenderStyle>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </GenderStyle>
-          <StyledButtonForm type="text" placeholder="City" required />
+          <StyledCityForm type="text" placeholder="City" required />
         </div>
-        <StyledButtonForm type="text" placeholder="Address" required />
-        <StyledButtonForm type="password" placeholder="password" required />
-        <input type="submit" value="Register" />
+        <StyledInputForm type="text" placeholder="Address" required />
+        <StyledInputForm type="password" placeholder="password" required />
+        <StyledButtonRegister type="submit" value="Register" />
       </ContainerForm>
       <ExtraInformation>
-        <p>
+        <ExtraInformationTop>
           By signing up, you agree to Trivjoy's terms of service and privacy
           policy.
-        </p>
-        <p>We will not share your personal info with anyone.</p>
+        </ExtraInformationTop>
+        <ExtraInformationTop>
+          We will not share your personal info with anyone.
+        </ExtraInformationTop>
         <Link to="/login">
           <span scheme="light">
-            <b> Already a member? Log in </b>
+            <ExtraInformationBottom>
+              Already a member? Log in
+            </ExtraInformationBottom>
           </span>
         </Link>
       </ExtraInformation>
