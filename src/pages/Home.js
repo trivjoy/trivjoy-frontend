@@ -41,6 +41,7 @@ const Home = () => {
         </div>
         <div>
           <p>Second,</p>
+          <div />
         </div>
       </HomeContent>
       <Footer />
