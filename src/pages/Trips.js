@@ -65,6 +65,9 @@ const ReadMoreStyle = styled.div`
   background-color: #5bb9fd;
   color: white;
 `
+const TitleStyled = styled.h2`
+  margin: 5px 0px 2px 10px;
+`
 
 const Trips = () => {
   return (
@@ -73,6 +76,7 @@ const Trips = () => {
       <Content>
         <CardsStyle>
           <ImageCards src="/assets/images/first-section-1.jpg" alt="" />
+          <TitleStyled>Title</TitleStyled>
           <DiscribeTopCards>
             <b>
               Sakti Dewantoro,<b> 24</b>
