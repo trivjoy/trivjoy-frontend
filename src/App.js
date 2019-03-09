@@ -6,7 +6,9 @@ import Register from './pages/Register'
 import Profile from './pages/Profile'
 import Post from './pages/Post'
 import Trips from './pages/Trips'
-import about_us from './pages/About_us'
+import About_us from './pages/About_us'
+import Safety from './pages/Safety'
+import Help from './pages/Help'
 
 class App extends Component {
   render() {
@@ -19,7 +21,9 @@ class App extends Component {
           <Route path="/profile" component={Profile} />
           <Route path="/post" component={Post} />
           <Route path="/trips" component={Trips} />
-          <Route path="/aboutUs" component={about_us} />
+          <Route path="/aboutUs" component={About_us} />
+          <Route path="/safety" component={Safety} />
+          <Route path="/help" component={Help} />
         </Switch>
       </Router>
     )

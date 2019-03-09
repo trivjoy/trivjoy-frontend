@@ -12,7 +12,7 @@ const Container = styled.div`
   min-height: 100vh;
 `
 
-const TripDetails = () => {
+const Help = () => {
   return (
     <Container>
       <Header />
@@ -22,4 +22,4 @@ const TripDetails = () => {
   )
 }
 
-export default TripDetails
+export default Help
