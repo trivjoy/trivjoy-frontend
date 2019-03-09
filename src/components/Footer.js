@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const LogoFooterLeft = styled.img`
   height: 30px;
@@ -32,6 +33,10 @@ const FooterRight = styled.div`
   flex-direction: column;
   margin: 40px 0px 30px 500px;
   font-size: 20px;
+  a {
+    text-decoration: none;
+    color: white;
+  }
 `
 
 const FooterLeft = styled.div`
@@ -76,7 +81,7 @@ const Footer = () => {
         </LogoStyle>
         <LogoStyle>
           <LogoEmail src="/assets/logo/email-logo-footer.svg" alt="" />
-          <b>support@trivjoy.com</b>
+          <b>trivjoy@gmail.com</b>
         </LogoStyle>
         <CopyrightStyle>
           Copyright <TrivjoyCopyright> Trivjoy </TrivjoyCopyright> 2019. All
@@ -84,7 +89,15 @@ const Footer = () => {
         </CopyrightStyle>
       </FooterLeft>
       <FooterRight>
-        <b>About Us</b> <b>Safety</b> <b>Help</b>
+        <Link to="/aboutUs">
+          <b>About Us</b>
+        </Link>
+        <Link to="/safety">
+          <b>Safety</b>
+        </Link>
+        <Link to="/help">
+          <b>Help</b>
+        </Link>
         <div>
           <LogoFooterRight src="/assets/logo/facebook-logo-footer.svg" alt="" />
           <LogoFooterRight src="/assets/logo/twitter-logo-footer.svg" alt="" />
