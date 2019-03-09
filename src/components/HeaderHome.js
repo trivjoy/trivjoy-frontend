@@ -22,7 +22,7 @@ const DiscoveryStyle = styled.button`
   font-size: 20px;
   height: 40px;
   width: 140px;
-  background-color: #ff8352;
+  background-color: #68bffd;
   color: white;
   border-radius: 4px;
   border-color: 2px #333131;
@@ -44,7 +44,7 @@ const DiscoveryArrow = styled.img`
 const DiscribeHomeHeader = styled.h2`
   text-shadow: 1px 2px 4px white;
   margin-top: 50px;
-  color: #68bffd;
+  color: #2f80ed;
 `
 const HomeHeaderContent = styled.div`
   text-align: center;
