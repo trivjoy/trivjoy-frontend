@@ -26,8 +26,101 @@ const CardHome = styled.div`
   height: 230px;
   border-radius: 4px;
   border: 1px grey;
-  background-color: white;
-  color: black;
+  background-color: #5bb9fd;
+  color: white;
+`
+const CardSection1 = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  width: 306px;
+  height: 230px;
+  border-radius: 4px;
+  border: 1px grey;
+  color: white;
+  background-image: linear-gradient(
+      0deg,
+      rgba(51, 51, 51, 0.8),
+      rgba(51, 51, 51, 0.8)
+    ),
+    url('/assets/images/first-section-1.jpg');
+`
+const CardSection2 = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  width: 306px;
+  height: 230px;
+  border-radius: 4px;
+  border: 1px grey;
+  color: white;
+  background-image: linear-gradient(
+      0deg,
+      rgba(51, 51, 51, 0.8),
+      rgba(51, 51, 51, 0.8)
+    ),
+    url('/assets/images/first-section-2.jpg');
+`
+
+const CardSection3 = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  width: 306px;
+  height: 230px;
+  border-radius: 4px;
+  border: 1px grey;
+  color: white;
+  background-image: linear-gradient(
+      0deg,
+      rgba(51, 51, 51, 0.8),
+      rgba(51, 51, 51, 0.8)
+    ),
+    url('/assets/images/first-section-3.jpg');
+`
+
+const CardSection4 = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  width: 306px;
+  height: 230px;
+  border-radius: 4px;
+  border: 1px grey;
+  color: white;
+  background-image: linear-gradient(
+      0deg,
+      rgba(51, 51, 51, 0.8),
+      rgba(51, 51, 51, 0.8)
+    ),
+    url('/assets/images/first-section-4.jpg');
+`
+
+const CardSection5 = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  width: 306px;
+  height: 230px;
+  border-radius: 4px;
+  border: 1px grey;
+  color: white;
+  background-image: linear-gradient(
+      0deg,
+      rgba(51, 51, 51, 0.8),
+      rgba(51, 51, 51, 0.8)
+    ),
+    url('/assets/images/first-section-5.jpg');
 `
 
 const CardDetailStarter = styled.b`
@@ -173,7 +266,7 @@ const Home = () => {
                 WHY YOU SHOULD JOIN WITH US AND MAKE YOUR TRAVELING UNFORGETABLE
               </CardDetailStarter>
             </CardHome>
-            <CardHome>
+            <CardSection1>
               <CardDetails>
                 <NumberCard>1</NumberCard>
                 <b> Getting in touch with yourself</b>{' '}
@@ -184,8 +277,8 @@ const Home = () => {
                   learn more about yourself.
                 </ParagraphCard>
               </CardDetails>
-            </CardHome>
-            <CardHome>
+            </CardSection1>
+            <CardSection2>
               <CardDetails>
                 <NumberCard>2</NumberCard>
                 <b> Expanding your perspective</b>
@@ -196,8 +289,8 @@ const Home = () => {
                   view isn’t the same as everyone else’s.
                 </ParagraphCard>
               </CardDetails>
-            </CardHome>
-            <CardHome>
+            </CardSection2>
+            <CardSection3>
               <CardDetails>
                 <NumberCard>3</NumberCard>
                 <b> Challenging yourself</b>
@@ -208,8 +301,8 @@ const Home = () => {
                   the ideal place to test yourself.
                 </ParagraphCard>
               </CardDetails>
-            </CardHome>
-            <CardHome>
+            </CardSection3>
+            <CardSection4>
               <CardDetails>
                 <NumberCard>4</NumberCard>
                 <b> Learning</b>
@@ -219,8 +312,8 @@ const Home = () => {
                   skills or knowledge.
                 </ParagraphCard>
               </CardDetails>
-            </CardHome>
-            <CardHome>
+            </CardSection4>
+            <CardSection5>
               <CardDetails>
                 <NumberCard>5</NumberCard>
                 <b> Appreciating your life</b>
@@ -230,7 +323,7 @@ const Home = () => {
                   special about your home
                 </ParagraphCard>
               </CardDetails>
-            </CardHome>
+            </CardSection5>
           </CardHomeContainer>
         </div>
         <ThirdContent>
