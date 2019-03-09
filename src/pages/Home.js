@@ -46,11 +46,11 @@ const CardHomeContainer = styled.div`
 const SecondStyle = styled.b`
   margin: 0px 0px 0px 20px;
   font-size: 20px;
-  color: #ff8352;
+  color: #2f80ed;
 `
 const FirstandThirdStyle = styled.b`
   font-size: 20px;
-  color: #ff8352;
+  color: #2f80ed;
 `
 
 const FirstContent = styled.div`
@@ -125,7 +125,7 @@ const LearnMoreButton = styled.button`
   font-size: 16px;
   height: 35px;
   width: 115px;
-  background-color: #ff8352;
+  background-color: #5bb9fd;
   color: white;
   border-radius: 4px;
   margin-bottom: 20px;
