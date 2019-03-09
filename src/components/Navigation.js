@@ -39,13 +39,26 @@ const RegisterStyle = styled.button`
     background-color: #fbfbfb;
   }
 `
+const LogoutStyle = styled.button`
+  font-size: 14px;
+  margin-right: 28px;
+  margin-left: 30px;
+  color: #b20e04;
+  border-radius: 3px;
+  border-color: #b20e04;
+  height: 25px;
+  :hover {
+    cursor: pointer;
+    background-color: #fbfbfb;
+  }
+`
 
 const StyledLink = styled(Link)`
   margin: 0px;
 `
 
 const Navigation = () => {
-  let isAuthenticated = false
+  let isAuthenticated = true
   return (
     <NavStyle>
       <LogoPosition>
@@ -66,13 +79,12 @@ const Navigation = () => {
       {!isAuthenticated && (
         <Link to="/register">
           <RegisterStyle>
-            {' '}
-            <b>Register</b>{' '}
+            <b>Register</b>
           </RegisterStyle>
         </Link>
       )}
       {isAuthenticated && (
-        <Link to="/">
+        <Link to="/post">
           <b>Post</b>
         </Link>
       )}
@@ -81,7 +93,11 @@ const Navigation = () => {
           <b>Profile</b>
         </Link>
       )}
-      {isAuthenticated && <button>Logout</button>}
+      {isAuthenticated && (
+        <LogoutStyle>
+          <b> Logout</b>
+        </LogoutStyle>
+      )}
     </NavStyle>
   )
 }
