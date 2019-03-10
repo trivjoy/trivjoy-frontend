@@ -12,9 +12,6 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Container = styled.div`
-  /* background-image: url('/assets/images/login-background.png'); */
-
-  /* height: 100vw; */
   background-repeat: no-repeat;
 
   a {
@@ -99,7 +96,7 @@ const Login = () => {
       <HeaderLoginAndRegister />
 
       <ContainerForm action="">
-        <TitleRegister>Sign In To Trivjoy</TitleRegister>
+        <TitleRegister>Log In To Trivjoy</TitleRegister>
 
         <StyledInputForm type="email" placeholder="Email" required />
         <StyledInputForm type="password" placeholder="password" required />
