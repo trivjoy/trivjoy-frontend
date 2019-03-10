@@ -58,7 +58,7 @@ const StyledLink = styled(Link)`
 `
 
 const Navigation = () => {
-  let isAuthenticated = false
+  let isAuthenticated = true
   return (
     <NavStyle>
       <LogoPosition>
@@ -85,7 +85,7 @@ const Navigation = () => {
       )}
       {isAuthenticated && (
         <Link to="/post">
-          <b>Post</b>
+          <b>MyPost</b>
         </Link>
       )}
       {isAuthenticated && (

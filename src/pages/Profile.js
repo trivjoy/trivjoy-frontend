@@ -40,9 +40,10 @@ const ManLogo = styled.img`
   padding: 4px;
   border-radius: 5px;
 `
-const ProfileStyle = styled.b`
+const ProfileStyle = styled.strong`
   color: #5bb9fd;
   font-size: 23px;
+  text-shadow: 1px 2px 4px #b7afaf;
 `
 const ParagraphStyle = styled.p`
   margin-top: 0px;
