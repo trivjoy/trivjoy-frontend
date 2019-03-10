@@ -128,6 +128,12 @@ const Register = () => {
                 <b>Email:</b>
               </ParagraphStyle>
               <ParagraphStyle>
+                <b>Gender:</b>
+              </ParagraphStyle>
+              <ParagraphStyle>
+                <b>Age:</b>
+              </ParagraphStyle>
+              <ParagraphStyle>
                 <b>Telephone Number:</b>
               </ParagraphStyle>
               <ParagraphStyle>
