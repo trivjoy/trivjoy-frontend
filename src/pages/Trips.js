@@ -49,7 +49,7 @@ const DiscribeBottomCards = styled.div`
   flex: 1;
 `
 const DiscribeTopCards = styled.div`
-  margin: 10px 0px 10px 10px;
+  margin: 3px 0px 15px 10px;
 `
 const ImageCards = styled.img`
   border-radius: 5px 5px 0px 0px;
@@ -66,7 +66,7 @@ const ReadMoreStyle = styled.div`
   color: white;
 `
 const TitleStyled = styled.h2`
-  margin: 5px 0px 2px 10px;
+  margin: 5px 0px 0px 10px;
 `
 
 const Trips = () => {
