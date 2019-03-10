@@ -10,6 +10,7 @@ import About_us from './pages/About_us'
 import Safety from './pages/Safety'
 import Help from './pages/Help'
 import CreatePost from './pages/CreatePost'
+import TripDetails from './pages/TripDetails'
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path="/safety" component={Safety} />
           <Route path="/help" component={Help} />
           <Route path="/create-post" component={CreatePost} />
+          <Route path="/trip-details" component={TripDetails} />
         </Switch>
       </Router>
     )
