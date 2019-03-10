@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styled from 'styled-components'
@@ -34,9 +35,11 @@ const Post = () => {
       <Header />
       <Content>
         <ButtonPosition>
-          <ButtonStyle>
-            <b>Create Post</b>
-          </ButtonStyle>
+          <Link to="/create-post">
+            <ButtonStyle>
+              <b>Create Post</b>
+            </ButtonStyle>
+          </Link>
         </ButtonPosition>
         <div />
       </Content>
