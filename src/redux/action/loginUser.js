@@ -22,11 +22,9 @@ export const loginUserError = error => ({
   }
 })
 
-export const setUserState = user => ({
+export const setUserState = data => ({
   type: 'SET_USER_STATE',
-  payload: {
-    user: user
-  }
+  payload: data
 })
 
 export const loginUser = data => {
@@ -39,26 +37,22 @@ export const loginUser = data => {
       data
     })
       .then(response => {
-        console.log(response)
         dispatch(loginUserSuccess(response.data))
 
         browserStorage.setKey('isAuthenticated', true)
 
         browserStorage.setKey('token', response.data.token)
 
-        return response
-      })
-      .then(response => {
         dispatch(
           setUserState({
             token: response.data.token,
-            name: response.data.user.name,
-            email: response.data.user.email,
-            isAuthenticated: true
+            isAuthenticated: true,
+            user: response.data.user
           })
         )
       })
       .catch(error => {
+        console.log(error)
         dispatch(loginUserError(error))
 
         browserStorage.setKey('isAuthenticated', false)

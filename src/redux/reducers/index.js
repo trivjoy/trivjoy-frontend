@@ -3,9 +3,11 @@ import { combineReducers } from 'redux'
 
 import registerReducer from './insertUser'
 import loginReducer from './loginUser'
+import userReducer from './user'
 
 export default combineReducers({
   // router: connectRouter(history),
   register: registerReducer,
-  login: loginReducer
+  login: loginReducer,
+  user: userReducer
 })

@@ -71,7 +71,6 @@ const TitleStyled = styled.h2`
 `
 
 const Trips = props => {
-  const user = props.user
   return (
     <Container>
       <Header />

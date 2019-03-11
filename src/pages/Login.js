@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
@@ -99,48 +99,42 @@ class Login extends React.Component {
     }
   }
 
-  onSubmit = async () => {
-    await this.props.dispatch(loginUser(this.state))
-
-    await this.props.dispatch({
-      type: 'SET_IS_AUTHENTICATED',
-      payload: {
-        isAuthenticated: true
-      }
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
     })
   }
+
+  onSubmit = async e => {
+    e.preventDefault()
+    await this.props.dispatch(loginUser(this.state))
+  }
+
   render() {
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/" />
+    }
+
     return (
       <Container>
         <GlobalStyle />
 
         <HeaderLoginAndRegister />
 
-        <ContainerForm
-          onSubmit={event => {
-            event.preventDefault()
-            this.onSubmit()
-          }}
-        >
+        <ContainerForm onSubmit={this.onSubmit}>
           <TitleRegister>Log In To Trivjoy</TitleRegister>
 
           <StyledInputForm
-            onChange={event => {
-              this.setState({
-                email: event.target.value
-              })
-            }}
+            onChange={this.handleChange}
+            name="email"
             type="email"
             placeholder="Email"
             value={this.state.email}
             required
           />
           <StyledInputForm
-            onChange={event => {
-              this.setState({
-                password: event.target.value
-              })
-            }}
+            onChange={this.handleChange}
+            name="password"
             type="password"
             placeholder="password"
             value={this.state.password}
@@ -168,7 +162,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.isAuthenticated
+    isAuthenticated: state.user.isAuthenticated
   }
 }
 
