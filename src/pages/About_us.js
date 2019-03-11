@@ -46,11 +46,7 @@ const About_us = () => {
       <Content>
         <TextTitle>
           <nav>
-            <ul>
-              <li>qqq</li>
-              <li>sss</li>
-              <li>aaa</li>
-            </ul>
+            <p>General Information about our company</p>
           </nav>
           <FirstDiscribeContent>
             <b>About US</b>
