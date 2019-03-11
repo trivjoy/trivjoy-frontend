@@ -4,7 +4,7 @@ import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { connect } from 'react-redux'
-import { loginUser } from '../redux/action/loginUser'
+import { login } from '../redux/actions/login'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -107,7 +107,7 @@ class Login extends React.Component {
 
   onSubmit = async e => {
     e.preventDefault()
-    await this.props.dispatch(loginUser(this.state))
+    await this.props.dispatch(login(this.state))
   }
 
   render() {

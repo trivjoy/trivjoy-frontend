@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 // import { connectRouter } from 'connected-react-router'
 
-import registerReducer from './insertUser'
-import loginReducer from './loginUser'
+import registerReducer from './register'
+import loginReducer from './login'
 import userReducer from './user'
 
 export default combineReducers({
