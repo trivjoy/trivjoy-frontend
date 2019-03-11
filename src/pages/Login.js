@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
+import { connect } from 'react-redux'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -88,14 +89,22 @@ const DoesntHaveAccount = styled.p`
   margin-bottom: 0px;
 `
 
-const Login = () => {
+const Login = props => {
   return (
     <Container>
       <GlobalStyle />
 
       <HeaderLoginAndRegister />
 
-      <ContainerForm action="">
+      <ContainerForm
+        onSubmit={event => {
+          event.preventDefault()
+
+          props.dispatch({
+            type: 'SET_ATHENTICATIONLOGIN'
+          })
+        }}
+      >
         <TitleRegister>Log In To Trivjoy</TitleRegister>
 
         <StyledInputForm type="email" placeholder="Email" required />
@@ -119,4 +128,10 @@ const Login = () => {
   )
 }
 
-export default Login
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(Login)
