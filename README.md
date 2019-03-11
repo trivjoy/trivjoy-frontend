@@ -1,68 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Trivjoy Frontend
 
-## Available Scripts
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3ac49b2d-6c13-4d17-8c7b-e7609fe985a5/deploy-status)](https://app.netlify.com/sites/trivjoy/deploys)
 
-In the project directory, you can run:
+## Tech Stack
 
-### `npm start`
+- React: To component-based web application
+  - React Router: To manage multiple pages/routes of the application
+  - React Helmet: To change the title when we change the page in Router
+- Redux: To managing global state in store
+  - Redux Devtools extension: To inspect all Redux behavior
+  - Redux Logger: To log our actions in the console
+  - Redux Thunk: To asynchronous operations in reducer
+- CSS in JS: To style the components without CSS file
+  - Emotion: To style the components flexibly with `styled` or other ways
+  - `styled-components`: To style the components with `styled`
+- Axios: To request/fetch data to/from the backend API server
+- `dayjs`: To convert from any date to better formatted date
+- Filestack: To upload and retrieve images
+- JWT Decoder: To decode JWT that is saved in the browserStorage
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Setup
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Run the `setup.sh` script first, to copy `.env.schema` into `.env`.
 
-### `npm test`
+```sh
+./setup.sh
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Then you fill the env variables. To get the Filestack API Key, go to https://www.filestack.com then **Sign Up Free** for an account. After logged in, you can get your API Key.
 
-### `npm run build`
+```txt
+REACT_APP_BACKEND_API_URL=http://localhost:0000 # change this
+REACT_APP_FILESTACK_API_KEY=your_api_key_from_filestack_here # change this
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Development
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```sh
+yarn start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Then open `http://localhost:3000`.
 
-### `npm run eject`
+## Building
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```sh
+yarn build
+npm install -g serve
+serve -s build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Then open `http://localhost:5000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+In deployment server such as Netlify, this build process should run automatically and the port is assigned by them (not `5000`).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Deploying
 
-## Learn More
+You can use Netlify to deploy. After which, you have to configure the environment variables as well.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```txt
+REACT_APP_BACKEND_API_URL=
+REACT_APP_FILESTACK_API_KEY=
+```
