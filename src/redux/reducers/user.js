@@ -1,5 +1,3 @@
-import { decodeToken } from '../../helpers/jwtDecoded'
-
 const initialState = {
   token: null,
   data: null,
