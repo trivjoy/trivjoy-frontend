@@ -22,6 +22,7 @@ const Container = styled.div`
 const TitleRegister = styled.h1`
   color: #2f80ed;
   margin: 0 auto;
+  margin-bottom: 20px;
 `
 const ContainerForm = styled.form`
   display: flex;
@@ -29,8 +30,17 @@ const ContainerForm = styled.form`
   width: 500px;
   margin: 0 auto;
 `
+
+const Label = styled.label`
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 14px;
+`
+
 const StyledInputForm = styled.input`
-  margin-top: 16px;
+  margin-top: 5px;
+  padding-left: 10px;
   height: 30px;
   border-radius: 5px;
   border: 1px solid #333333;
@@ -62,12 +72,13 @@ const ExtraInformationTop = styled.p`
   font-size: 14px;
   margin: 0px auto;
 `
-const ExtraInformationBottom = styled.b`
-  margin-top: 100px;
+const ExtraInformationBottom = styled.p`
+  margin-top: 10px;
   margin-left: 158px;
 `
 const StyledAgeForm = styled.input`
   margin-top: 16px;
+  padding-left: 10px;
   width: 40px;
   height: 30px;
   border-radius: 5px;
@@ -76,15 +87,15 @@ const StyledAgeForm = styled.input`
 const GenderStyle = styled.select`
   text-align: center;
   height: 35px;
-  width: 160px;
+  width: 120px;
   margin-left: 16px;
   margin-right: 16px;
   border: 1px solid #333333;
 `
 
 const StyledCityForm = styled.input`
-  margin-top: 16px;
-  width: 260px;
+  margin-top: 10px;
+  padding-left: 10px;
   height: 30px;
   border-radius: 5px;
   border: 1px solid #333333;
@@ -98,9 +109,10 @@ class Register extends React.Component {
       email: '',
       phone: '',
       age: '',
-      gender: 'Male',
-      city: '',
+      gender: '',
       address: '',
+      city: '',
+      country: '',
       password: ''
     }
   }
@@ -111,9 +123,10 @@ class Register extends React.Component {
       email: '',
       phone: '',
       age: '',
-      gender: 'Male',
-      city: '',
+      gender: '',
       address: '',
+      city: '',
+      country: '',
       password: ''
     })
   }
@@ -136,7 +149,9 @@ class Register extends React.Component {
             this.onSubmit()
           }}
         >
-          <TitleRegister>Join Us as a Trivjoy Member!</TitleRegister>
+          <TitleRegister>Join us as a Trivjoy member!</TitleRegister>
+
+          <Label>Full name:</Label>
           <StyledInputForm
             onChange={event => {
               this.setState({
@@ -144,10 +159,12 @@ class Register extends React.Component {
               })
             }}
             type="text"
-            placeholder="FullName"
+            placeholder="Full Name"
             value={this.state.name}
             required
           />
+
+          <Label>Email address:</Label>
           <StyledInputForm
             onChange={event => {
               this.setState({
@@ -155,10 +172,25 @@ class Register extends React.Component {
               })
             }}
             type="email"
-            placeholder="Email"
+            placeholder="yourname@example.com"
             value={this.state.email}
             required
           />
+
+          <Label>Password:</Label>
+          <StyledInputForm
+            onChange={event => {
+              this.setState({
+                password: event.target.value
+              })
+            }}
+            type="password"
+            placeholder="password"
+            value={this.state.password}
+            required
+          />
+
+          <Label>Phone number:</Label>
           <StyledInputForm
             onChange={event => {
               this.setState({
@@ -171,6 +203,7 @@ class Register extends React.Component {
             required
           />
           <div>
+            <Label>Age:</Label>
             <StyledAgeForm
               onChange={event => {
                 this.setState({
@@ -178,10 +211,11 @@ class Register extends React.Component {
                 })
               }}
               type="number"
-              placeholder="Age"
+              placeholder="18"
               value={this.state.age}
               required
             />
+            <Label>Gender:</Label>
             <GenderStyle
               onChange={event => {
                 this.setState({
@@ -193,18 +227,8 @@ class Register extends React.Component {
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </GenderStyle>
-            <StyledCityForm
-              onChange={event => {
-                this.setState({
-                  city: event.target.value
-                })
-              }}
-              type="text"
-              placeholder="City"
-              value={this.state.city}
-              required
-            />
           </div>
+          <Label>Street address:</Label>
           <StyledInputForm
             onChange={event => {
               this.setState({
@@ -216,17 +240,31 @@ class Register extends React.Component {
             value={this.state.address}
             required
           />
-          <StyledInputForm
+          <Label>City:</Label>
+          <StyledCityForm
             onChange={event => {
               this.setState({
-                password: event.target.value
+                city: event.target.value
               })
             }}
-            type="password"
-            placeholder="password"
-            value={this.state.password}
+            type="text"
+            placeholder="City"
+            value={this.state.city}
             required
           />
+          <Label>Country:</Label>
+          <StyledCityForm
+            onChange={event => {
+              this.setState({
+                country: event.target.value
+              })
+            }}
+            type="text"
+            placeholder="Country"
+            value={this.state.country}
+            required
+          />
+
           <StyledButtonRegister type="submit" value="Register" />
         </ContainerForm>
         <ExtraInformation>
@@ -237,13 +275,11 @@ class Register extends React.Component {
           <ExtraInformationTop>
             We will not share your personal info with anyone.
           </ExtraInformationTop>
-          <Link to="/login">
-            <span scheme="light">
-              <ExtraInformationBottom>
-                Already a member? Log in
-              </ExtraInformationBottom>
-            </span>
-          </Link>
+          <ExtraInformationBottom>
+            <Link to="/login">
+              <b>Already a member? Log in</b>
+            </Link>
+          </ExtraInformationBottom>
         </ExtraInformation>
       </Container>
     )
