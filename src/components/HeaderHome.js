@@ -13,20 +13,23 @@ const ContainerHeader = styled.div`
   }
 `
 
-const DiscoveryStyle = styled.button`
+const HeaderButtons = styled.div`
   display: flex;
-  text-align: right;
+  text-align: center;
   justify-content: center;
   align-items: center;
-  margin: 230px 0px 0px 600px;
+`
+
+const HeaderButton = styled.button`
   font-size: 20px;
-  height: 40px;
-  width: 140px;
+  padding: 10px 20px;
+  margin: 0 10px;
   background-color: #68bffd;
   color: white;
+  border: none;
   border-radius: 4px;
-  border-color: 2px #333131;
   justify-content: center;
+  font-weight: bold;
   :hover {
     cursor: pointer;
     transition: 0.5s;
@@ -34,18 +37,12 @@ const DiscoveryStyle = styled.button`
   }
 `
 
-const DiscoveryFont = styled.b`
-  margin-bottom: 4px;
-`
-const DiscoveryArrow = styled.img`
-  height: 30px;
-  margin-top: 4px;
-`
-const DiscribeHomeHeader = styled.h2`
+const DescribeHomeHeader = styled.h2`
   text-shadow: 1px 2px 4px white;
   margin-top: 50px;
   color: #2f80ed;
 `
+
 const HomeHeaderContent = styled.div`
   text-align: center;
 `
@@ -55,15 +52,16 @@ const HeaderHome = () => {
     <ContainerHeader>
       <Navigation />
       <HomeHeaderContent>
-        <DiscribeHomeHeader>
-          Let’s trip and joy with TrivJoy #YourBestFindTravelPartner.{' '}
-        </DiscribeHomeHeader>
-        <Link to="/trips">
-          <DiscoveryStyle>
-            <DiscoveryFont>Discovery</DiscoveryFont>
-            <DiscoveryArrow src="/assets/logo/arrow-right.svg" alt="" />
-          </DiscoveryStyle>
-        </Link>
+        <DescribeHomeHeader>
+          <h1>Let’s trip and joy with TrivJoy</h1>
+          <h2>#YourTravelPartnerFinder</h2>
+        </DescribeHomeHeader>
+        <HeaderButtons>
+          <Link to="/trips">
+            <HeaderButton>Discover Trips</HeaderButton>
+            <HeaderButton>Register Now</HeaderButton>
+          </Link>
+        </HeaderButtons>
       </HomeHeaderContent>
     </ContainerHeader>
   )
