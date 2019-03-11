@@ -2,13 +2,13 @@ import { request } from '../../helpers/index'
 import browserStorage from '../browserStorage'
 
 export const loginBegin = () => ({
-  type: 'LOGIN_USER_BEGIN'
+  type: 'LOGIN_BEGIN'
 })
 
 export const loginSuccess = userData => {
   console.log(userData)
   return {
-    type: 'LOGIN_USER_SUCCESS',
+    type: 'LOGIN_SUCCESS',
     payload: {
       userData: userData
     }
@@ -16,7 +16,7 @@ export const loginSuccess = userData => {
 }
 
 export const loginError = error => ({
-  type: 'LOGIN_USER_ERROR',
+  type: 'LOGIN_ERROR',
   payload: {
     error: error
   }

@@ -19,18 +19,18 @@ export const register = data => {
 }
 
 const registerStarted = () => ({
-  type: 'INSERT_USER_PROCESS'
+  type: 'REGISTER_PROCESS'
 })
 
 const registerSuccess = response => ({
-  type: 'INSERT_USER_SUCCESS',
+  type: 'REGISTER_SUCCESS',
   payload: {
     users: response.data.users
   }
 })
 
 const registerError = error => ({
-  type: 'INSERT_USER_ERROR',
+  type: 'REGISTER_ERROR',
   payload: {
     error
   }
