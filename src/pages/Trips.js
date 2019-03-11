@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 const Content = styled.div`
   flex: 1;
@@ -69,52 +70,65 @@ const TitleStyled = styled.h2`
   margin: 5px 0px 0px 10px;
 `
 
-const Trips = () => {
+const Trips = props => {
+  const user = props.user
   return (
     <Container>
       <Header />
       <Content>
-        <CardsStyle>
-          <ImageCards src="/assets/images/first-section-1.jpg" alt="" />
-          <TitleStyled>Title</TitleStyled>
-          <DiscribeTopCards>
-            <b>
-              Sakti Dewantoro,<b> 24</b>
-            </b>
-            <div>
-              <LocationLogo src="/assets/logo/maps-and-flags.svg" alt="" />
-              <b>Bandung</b>
-            </div>
-          </DiscribeTopCards>
+        {user.map((item, index) => {
+          return (
+            <CardsStyle key={index}>
+              <ImageCards src={item.trips.pictures} alt="" />
+              <TitleStyled>{item.trips.title}</TitleStyled>
+              <DiscribeTopCards>
+                <b>
+                  {item.fullname},<b> 24</b>
+                </b>
+                <div>
+                  <LocationLogo src="/assets/logo/maps-and-flags.svg" alt="" />
+                  <b>{item.city}</b>
+                </div>
+              </DiscribeTopCards>
 
-          <DiscribeBottomCards>
-            <LogoStyle src="/assets/logo/hammock.svg" alt="" />
-            <b>Tour Destination:</b>
-          </DiscribeBottomCards>
-          <DiscribeBottomCards>
-            <LogoStyle src="/assets/logo/calendar.svg" alt="" />
-            <b>Date:</b>
-          </DiscribeBottomCards>
-          <DiscribeBottomCards>
-            <LogoStyle src="/assets/logo/purse.svg" alt="" />
-            <b>Budget:</b>
-          </DiscribeBottomCards>
-          <DiscribeBottomCards>
-            <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
-            <b>People Can Join:</b>
-          </DiscribeBottomCards>
-          <DiscribeBottomCards>
-            <LogoStyle src="/assets/logo/success.svg" alt="" />
-            <b>Alredy Join:</b>
-          </DiscribeBottomCards>
-          <ReadMoreStyle>
-            <b>Read More</b>
-          </ReadMoreStyle>
-        </CardsStyle>
+              <DiscribeBottomCards>
+                <LogoStyle src="/assets/logo/hammock.svg" alt="" />
+                <b>Tour Destination:{item.trips.tour_destination}</b>
+              </DiscribeBottomCards>
+              <DiscribeBottomCards>
+                <LogoStyle src="/assets/logo/calendar.svg" alt="" />
+                <b>
+                  Date: {item.trips.date_departure}
+                  {item.trips.date_return}
+                </b>
+              </DiscribeBottomCards>
+              <DiscribeBottomCards>
+                <LogoStyle src="/assets/logo/purse.svg" alt="" />
+                <b>Budget:{item.trips.budget}</b>
+              </DiscribeBottomCards>
+              <DiscribeBottomCards>
+                <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
+                <b>People Can Join:{item.trips.people_can_join}</b>
+              </DiscribeBottomCards>
+              <DiscribeBottomCards>
+                <LogoStyle src="/assets/logo/success.svg" alt="" />
+                <b>Alredy Join:{item.trips.alredy_join}</b>
+              </DiscribeBottomCards>
+              <ReadMoreStyle>
+                <b>Read More</b>
+              </ReadMoreStyle>
+            </CardsStyle>
+          )
+        })}
       </Content>
       <Footer />
     </Container>
   )
 }
 
-export default Trips
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+export default connect(mapStateToProps)(Trips)

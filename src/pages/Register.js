@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
+import { insertUser } from '../redux/action/insertUser'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -88,47 +90,170 @@ const StyledCityForm = styled.input`
   border: 1px solid #333333;
 `
 
-const Register = () => {
-  return (
-    <Container>
-      <GlobalStyle />
-      <HeaderLoginAndRegister />
+class Register extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      name: '',
+      email: '',
+      phone: '',
+      age: '',
+      gender: 'Male',
+      city: '',
+      address: '',
+      password: ''
+    }
+  }
 
-      <ContainerForm action="">
-        <TitleRegister>Join Us as a Trivjoy Member!</TitleRegister>
-        <StyledInputForm type="text" placeholder="FullName" required />
-        <StyledInputForm type="email" placeholder="Email" required />
-        <StyledInputForm type="tel" placeholder="Telephone Number" required />
-        <div>
-          <StyledAgeForm type="number" placeholder="Age" required />
-          <GenderStyle>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </GenderStyle>
-          <StyledCityForm type="text" placeholder="City" required />
-        </div>
-        <StyledInputForm type="text" placeholder="Address" required />
-        <StyledInputForm type="password" placeholder="password" required />
-        <StyledButtonRegister type="submit" value="Register" />
-      </ContainerForm>
-      <ExtraInformation>
-        <ExtraInformationTop>
-          By signing up, you agree to Trivjoy's terms of service and privacy
-          policy.
-        </ExtraInformationTop>
-        <ExtraInformationTop>
-          We will not share your personal info with anyone.
-        </ExtraInformationTop>
-        <Link to="/login">
-          <span scheme="light">
-            <ExtraInformationBottom>
-              Already a member? Log in
-            </ExtraInformationBottom>
-          </span>
-        </Link>
-      </ExtraInformation>
-    </Container>
-  )
+  clearInputText = () => {
+    this.setState({
+      name: '',
+      email: '',
+      phone: '',
+      age: '',
+      gender: 'Male',
+      city: '',
+      address: '',
+      password: ''
+    })
+  }
+
+  onSubmit = async () => {
+    this.props.dispatch(insertUser(this.state))
+
+    this.clearInputText()
+  }
+
+  render() {
+    return (
+      <Container>
+        <GlobalStyle />
+        <HeaderLoginAndRegister />
+
+        <ContainerForm
+          onSubmit={event => {
+            event.preventDefault()
+            this.onSubmit()
+          }}
+        >
+          <TitleRegister>Join Us as a Trivjoy Member!</TitleRegister>
+          <StyledInputForm
+            onChange={event => {
+              this.setState({
+                name: event.target.value
+              })
+            }}
+            type="text"
+            placeholder="FullName"
+            value={this.state.name}
+            required
+          />
+          <StyledInputForm
+            onChange={event => {
+              this.setState({
+                email: event.target.value
+              })
+            }}
+            type="email"
+            placeholder="Email"
+            value={this.state.email}
+            required
+          />
+          <StyledInputForm
+            onChange={event => {
+              this.setState({
+                phone: event.target.value
+              })
+            }}
+            type="tel"
+            placeholder="Telephone Number"
+            value={this.state.phone}
+            required
+          />
+          <div>
+            <StyledAgeForm
+              onChange={event => {
+                this.setState({
+                  age: event.target.value
+                })
+              }}
+              type="number"
+              placeholder="Age"
+              value={this.state.age}
+              required
+            />
+            <GenderStyle
+              onChange={event => {
+                this.setState({
+                  gender: event.target.value
+                })
+              }}
+              value={this.state.gender}
+            >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </GenderStyle>
+            <StyledCityForm
+              onChange={event => {
+                this.setState({
+                  city: event.target.value
+                })
+              }}
+              type="text"
+              placeholder="City"
+              value={this.state.city}
+              required
+            />
+          </div>
+          <StyledInputForm
+            onChange={event => {
+              this.setState({
+                address: event.target.value
+              })
+            }}
+            type="text"
+            placeholder="Address"
+            value={this.state.address}
+            required
+          />
+          <StyledInputForm
+            onChange={event => {
+              this.setState({
+                password: event.target.value
+              })
+            }}
+            type="password"
+            placeholder="password"
+            value={this.state.password}
+            required
+          />
+          <StyledButtonRegister type="submit" value="Register" />
+        </ContainerForm>
+        <ExtraInformation>
+          <ExtraInformationTop>
+            By signing up, you agree to Trivjoy's terms of service and privacy
+            policy.
+          </ExtraInformationTop>
+          <ExtraInformationTop>
+            We will not share your personal info with anyone.
+          </ExtraInformationTop>
+          <Link to="/login">
+            <span scheme="light">
+              <ExtraInformationBottom>
+                Already a member? Log in
+              </ExtraInformationBottom>
+            </span>
+          </Link>
+        </ExtraInformation>
+      </Container>
+    )
+  }
 }
 
-export default Register
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  }
+}
+
+export default connect(mapStateToProps)(Register)

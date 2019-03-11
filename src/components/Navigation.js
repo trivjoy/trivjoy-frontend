@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 const Logo = styled.img`
   height: 10px;
@@ -57,8 +58,8 @@ const StyledLink = styled(Link)`
   margin: 0px;
 `
 
-const Navigation = () => {
-  let isAuthenticated = true
+const Navigation = props => {
+  const isAuthenticated = props.isAuthenticated
   return (
     <NavStyle>
       <LogoPosition>
@@ -94,7 +95,13 @@ const Navigation = () => {
         </Link>
       )}
       {isAuthenticated && (
-        <LogoutStyle>
+        <LogoutStyle
+          onClick={() => {
+            props.dispatch({
+              type: 'SET_ATHENTICATIONLOGOUT'
+            })
+          }}
+        >
           <b> Logout</b>
         </LogoutStyle>
       )}
@@ -102,4 +109,10 @@ const Navigation = () => {
   )
 }
 
-export default Navigation
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(Navigation)
