@@ -1,7 +1,8 @@
 import React from 'react'
+import styled from 'styled-components'
+
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
@@ -95,7 +96,7 @@ const ButtonCreatePost = styled.input`
   }
 `
 
-const CreatePost = () => {
+const CreateTrip = () => {
   return (
     <Container>
       <Header />
@@ -166,4 +167,4 @@ const CreatePost = () => {
   )
 }
 
-export default CreatePost
+export default CreateTrip

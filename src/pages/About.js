@@ -1,7 +1,8 @@
 import React from 'react'
+import styled from 'styled-components'
+
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import styled from 'styled-components'
 
 const Content = styled.div`
   justify-content: center;
@@ -39,7 +40,7 @@ const Paragraph = styled.p`
   text-align: justify;
 `
 
-const About_us = () => {
+const About = () => {
   return (
     <Container>
       <Header />
@@ -83,4 +84,4 @@ const About_us = () => {
   )
 }
 
-export default About_us
+export default About

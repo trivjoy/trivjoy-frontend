@@ -9,10 +9,10 @@ import Register from './pages/Register'
 import Profile from './pages/Profile'
 import Post from './pages/Post'
 import Trips from './pages/Trips'
-import About_us from './pages/About_us'
+import About from './pages/About'
 import Safety from './pages/Safety'
 import Help from './pages/Help'
-import CreatePost from './pages/CreatePost'
+import CreateTrip from './pages/CreateTrip'
 import TripDetails from './pages/TripDetails'
 
 class App extends Component {
@@ -27,11 +27,11 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/post" component={Post} />
             <Route path="/trips" component={Trips} />
-            <Route path="/aboutUs" component={About_us} />
+            <Route path="/about" component={About} />
             <Route path="/safety" component={Safety} />
             <Route path="/help" component={Help} />
-            <Route path="/create-post" component={CreatePost} />
-            <Route path="/trip-details" component={TripDetails} />
+            <Route path="/create" component={CreateTrip} />
+            <Route path={`/trips/:id`} component={TripDetails} />
           </Switch>
         </Router>
       </Provider>
