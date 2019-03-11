@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-const Logo = styled.img`
-  height: 10px;
-  width: 10px;
-  margin: 20px 30px;
-`
-
 const LogoTrivjoy = styled.img`
   height: 55px;
   width: 70px;
@@ -60,6 +54,7 @@ const StyledLink = styled(Link)`
 
 const Navigation = props => {
   const isAuthenticated = props.isAuthenticated
+
   return (
     <NavStyle>
       <LogoPosition>
@@ -68,10 +63,10 @@ const Navigation = props => {
         </Link>
       </LogoPosition>
 
-      <Logo src="/assets/logo/search-logo-header.svg" alt="" />
       <Link to="/trips">
         <b>Explore</b>
       </Link>
+
       {!isAuthenticated && (
         <StyledLink to="/login">
           <b>Login</b>
@@ -84,9 +79,10 @@ const Navigation = props => {
           </RegisterStyle>
         </Link>
       )}
+
       {isAuthenticated && (
-        <Link to="/post">
-          <b>MyPost</b>
+        <Link to="/create">
+          <b>Create Trip</b>
         </Link>
       )}
       {isAuthenticated && (
@@ -98,11 +94,11 @@ const Navigation = props => {
         <LogoutStyle
           onClick={() => {
             props.dispatch({
-              type: 'SET_ATHENTICATIONLOGOUT'
+              type: 'LOGOUT_USER'
             })
           }}
         >
-          <b> Logout</b>
+          <b>Logout</b>
         </LogoutStyle>
       )}
     </NavStyle>

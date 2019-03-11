@@ -77,11 +77,11 @@ const Footer = () => {
         </LogoStyle>
         <LogoStyle>
           <LogoFooterLeft src="/assets/logo/telephone-logo-footer.svg" alt="" />
-          <b>080123456789</b>
+          <b>+62 80 1234 5678</b>
         </LogoStyle>
         <LogoStyle>
           <LogoEmail src="/assets/logo/email-logo-footer.svg" alt="" />
-          <b>trivjoy@gmail.com</b>
+          <b>trivjoy.team@gmail.com</b>
         </LogoStyle>
         <CopyrightStyle>
           Copyright <TrivjoyCopyright> Trivjoy </TrivjoyCopyright> 2019. All

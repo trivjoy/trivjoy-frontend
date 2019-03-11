@@ -1,8 +1,9 @@
 import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 const Content = styled.div`
   flex: 1;
@@ -72,6 +73,7 @@ const TitleStyled = styled.h2`
 
 const Trips = props => {
   const user = props.user
+
   return (
     <Container>
       <Header />
@@ -112,7 +114,7 @@ const Trips = props => {
               </DiscribeBottomCards>
               <DiscribeBottomCards>
                 <LogoStyle src="/assets/logo/success.svg" alt="" />
-                <b>Alredy Join:{item.trips.alredy_join}</b>
+                <b>Already Join:{item.trips.alredy_join}</b>
               </DiscribeBottomCards>
               <ReadMoreStyle>
                 <b>Read More</b>
@@ -131,4 +133,5 @@ const mapStateToProps = state => {
     user: state.user
   }
 }
+
 export default connect(mapStateToProps)(Trips)

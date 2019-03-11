@@ -105,10 +105,14 @@ const Login = props => {
           })
         }}
       >
-        <TitleRegister>Log In To Trivjoy</TitleRegister>
+        <TitleRegister>Login to Trivjoy</TitleRegister>
 
-        <StyledInputForm type="email" placeholder="Email" required />
-        <StyledInputForm type="password" placeholder="password" required />
+        <StyledInputForm
+          type="email"
+          placeholder="yourname@example.com"
+          required
+        />
+        <StyledInputForm type="password" placeholder="yourpassword" required />
         <div>
           <RememberMe>
             <input type="checkbox" /> Remember Me

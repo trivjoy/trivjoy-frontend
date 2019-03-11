@@ -238,7 +238,7 @@ const Home = () => {
         <FirstContent>
           <FirstandThirdStyle>First,</FirstandThirdStyle>
           <ParagraphCard>
-            <b>Why You Should Go To Travelling?</b>
+            <b>Why You Should Travel?</b>
           </ParagraphCard>
 
           <FirstDiscribeContent>
