@@ -1,2 +1,0 @@
-# trivjoy-frontend
-Trivjoy frontend
