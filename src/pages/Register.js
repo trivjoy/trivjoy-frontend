@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import { insertUser } from '../redux/action/insertUser'
+import { insertUser } from '../redux/actions/insertUser'
 
 const GlobalStyle = createGlobalStyle`
   body {
