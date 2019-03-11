@@ -2,14 +2,14 @@ import { combineReducers } from 'redux'
 
 const usersInitialState = [
   {
-    name='',
-    email='',
-    phone='',
-    age='',
-    gender='',
-    city='',
-    address='',
-    password='',
+    name: '',
+    email: '',
+    phone: '',
+    age: '',
+    gender: '',
+    city: '',
+    address: '',
+    password: ''
   }
 ]
 

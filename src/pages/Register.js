@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import { insertUser } from '../redux/action'
+import { insertUser } from '../redux/action/insertUser'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -98,7 +98,7 @@ class Register extends React.Component {
       email: '',
       phone: '',
       age: '',
-      gender: '',
+      gender: 'Male',
       city: '',
       address: '',
       password: ''
@@ -111,7 +111,7 @@ class Register extends React.Component {
       email: '',
       phone: '',
       age: '',
-      gender: '',
+      gender: 'Male',
       city: '',
       address: '',
       password: ''
@@ -119,18 +119,7 @@ class Register extends React.Component {
   }
 
   onSubmit = async () => {
-    this.props.dispatch(
-      insertUser({
-        name: this.state.name,
-        email: this.state.email,
-        telephone: this.state.telephone,
-        age: this.state.age,
-        gender: this.state.gender,
-        city: this.state.city,
-        address: this.state.address,
-        password: this.state.password
-      })
-    )
+    this.props.dispatch(insertUser(this.state))
 
     this.clearInputText()
   }
@@ -199,6 +188,7 @@ class Register extends React.Component {
                   gender: event.target.value
                 })
               }}
+              value={this.state.gender}
             >
               <option value="Male">Male</option>
               <option value="Female">Female</option>
