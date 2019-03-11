@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import { insertUser } from '../redux/actions/insertUser'
+import { register } from '../redux/actions/register'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -132,7 +132,7 @@ class Register extends React.Component {
   }
 
   onSubmit = async () => {
-    this.props.dispatch(insertUser(this.state))
+    this.props.dispatch(register(this.state))
 
     this.clearInputText()
   }
