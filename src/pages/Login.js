@@ -4,6 +4,7 @@ import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { connect } from 'react-redux'
+import { loginUser } from '../redux/action/loginUser'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -89,43 +90,80 @@ const DoesntHaveAccount = styled.p`
   margin-bottom: 0px;
 `
 
-const Login = props => {
-  return (
-    <Container>
-      <GlobalStyle />
+class Login extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      email: 'saktyd@gmail.com',
+      password: 'saktyd'
+    }
+  }
 
-      <HeaderLoginAndRegister />
+  onSubmit = async () => {
+    await this.props.dispatch(loginUser(this.state))
 
-      <ContainerForm
-        onSubmit={event => {
-          event.preventDefault()
+    await this.props.dispatch({
+      type: 'SET_IS_AUTHENTICATED',
+      payload: {
+        isAuthenticated: true
+      }
+    })
+  }
+  render() {
+    return (
+      <Container>
+        <GlobalStyle />
 
-          props.dispatch({
-            type: 'SET_ATHENTICATIONLOGIN'
-          })
-        }}
-      >
-        <TitleRegister>Log In To Trivjoy</TitleRegister>
+        <HeaderLoginAndRegister />
 
-        <StyledInputForm type="email" placeholder="Email" required />
-        <StyledInputForm type="password" placeholder="password" required />
-        <div>
-          <RememberMe>
-            <input type="checkbox" /> Remember Me
-          </RememberMe>
-          <ForgotPassword>Forgot your password?</ForgotPassword>
-        </div>
+        <ContainerForm
+          onSubmit={event => {
+            event.preventDefault()
+            this.onSubmit()
+          }}
+        >
+          <TitleRegister>Log In To Trivjoy</TitleRegister>
 
-        <StyledButtonLogin type="submit" value="Login" />
-      </ContainerForm>
-      <ExtraInformation>
-        <DoesntHaveAccount>Does not have an account yet?</DoesntHaveAccount>
-        <Link to="/register">
-          <ExtraInformationRegister>Register here</ExtraInformationRegister>
-        </Link>
-      </ExtraInformation>
-    </Container>
-  )
+          <StyledInputForm
+            onChange={event => {
+              this.setState({
+                email: event.target.value
+              })
+            }}
+            type="email"
+            placeholder="Email"
+            value={this.state.email}
+            required
+          />
+          <StyledInputForm
+            onChange={event => {
+              this.setState({
+                password: event.target.value
+              })
+            }}
+            type="password"
+            placeholder="password"
+            value={this.state.password}
+            required
+          />
+          <div>
+            <RememberMe>
+              <input type="checkbox" /> Remember Me
+            </RememberMe>
+            <ForgotPassword>Forgot your password?</ForgotPassword>
+          </div>
+
+          <StyledButtonLogin type="submit" value="Login" />
+        </ContainerForm>
+        <ExtraInformation>
+          <DoesntHaveAccount>Does not have an account yet?</DoesntHaveAccount>
+          <Link to="/register">
+            <ExtraInformationRegister>Register here</ExtraInformationRegister>
+          </Link>
+        </ExtraInformation>
+      </Container>
+    )
+  }
 }
 
 const mapStateToProps = state => {

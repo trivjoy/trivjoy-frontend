@@ -1,17 +1,15 @@
 import { combineReducers } from 'redux'
 
-const usersInitialState = [
-  {
-    name: '',
-    email: '',
-    phone: '',
-    age: '',
-    gender: '',
-    city: '',
-    address: '',
-    password: ''
-  }
-]
+const usersInitialState = {
+  name: '',
+  email: '',
+  phone: '',
+  age: '',
+  gender: '',
+  city: '',
+  address: '',
+  password: ''
+}
 
 const usersReducer = (state = usersInitialState, action) => {
   switch (action.type) {
@@ -48,8 +46,4 @@ const usersReducer = (state = usersInitialState, action) => {
   }
 }
 
-const rootReducer = combineReducers({
-  usersReducer
-})
-
-export default rootReducer
+export default usersReducer

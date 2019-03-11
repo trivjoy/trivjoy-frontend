@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import reduxStore from './redux/store'
+// import { ConnectedRouter } from 'connected-react-router'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -15,10 +15,12 @@ import Help from './pages/Help'
 import CreateTrip from './pages/CreateTrip'
 import TripDetails from './pages/TripDetails'
 
+import reduxsStore from './redux/store'
+
 class App extends Component {
   render() {
     return (
-      <Provider store={reduxStore}>
+      <Provider store={reduxsStore}>
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
