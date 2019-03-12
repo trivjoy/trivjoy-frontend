@@ -11,12 +11,26 @@ const Container = styled.div`
   flex-direction: column;
   min-height: 100vh;
 `
+const StyledDiv = styled.div`
+  display: flex;
+`
 
 const Safety = () => {
   return (
     <Container>
       <Header />
-      <Content />
+      <Content>
+        <StyledDiv>
+          <img src="/assets/logo/create-trip.png" alt="create trip" />
+          <div>
+            <h3>Create a Trip</h3>
+            <p>
+              Create a trip and wait for someone to join up or find an existing
+              one that you like the most.
+            </p>
+          </div>
+        </StyledDiv>
+      </Content>
       <Footer />
     </Container>
   )
