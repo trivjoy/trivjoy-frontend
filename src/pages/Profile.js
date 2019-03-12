@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 const Content = styled.div`
   flex: 1;
@@ -100,7 +101,7 @@ const AboutMe = styled.b`
   margin-bottom: 5px;
 `
 
-const Register = () => {
+const Profile = ({ user }) => {
   return (
     <Container>
       <Header />
@@ -122,25 +123,25 @@ const Register = () => {
 
             <div>
               <ParagraphStyle>
-                <b>Full Name:</b>
+                <b>FullName: {user.name}</b>
               </ParagraphStyle>
               <ParagraphStyle>
-                <b>Email:</b>
+                <b>Email: {user.email}</b>
               </ParagraphStyle>
               <ParagraphStyle>
-                <b>Gender:</b>
+                <b>Gender: {user.gender}</b>
               </ParagraphStyle>
               <ParagraphStyle>
-                <b>Age:</b>
+                <b>Age: {user.age}</b>
               </ParagraphStyle>
               <ParagraphStyle>
-                <b>Telephone Number:</b>
+                <b>Telephone Number: {user.phone}</b>
               </ParagraphStyle>
               <ParagraphStyle>
-                <b>City:</b>
+                <b>City: {user.city}</b>
               </ParagraphStyle>
               <ParagraphStyle>
-                <b>Address:</b>
+                <b>Address: {user.address}</b>
               </ParagraphStyle>
             </div>
           </TopRightContent>
@@ -161,4 +162,11 @@ const Register = () => {
   )
 }
 
-export default Register
+const mapStateToProps = state => {
+  return {
+    // might contain name, email, token, isAuthenticated
+    user: state.user.data
+  }
+}
+
+export default connect(mapStateToProps)(Profile)
