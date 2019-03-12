@@ -94,7 +94,7 @@ const Navigation = props => {
         <LogoutStyle
           onClick={() => {
             props.dispatch({
-              type: 'LOGOUT_USER'
+              type: 'LOGOUT'
             })
           }}
         >
