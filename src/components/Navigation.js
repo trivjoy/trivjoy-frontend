@@ -93,9 +93,7 @@ const Navigation = props => {
       {isAuthenticated && (
         <LogoutStyle
           onClick={() => {
-            props.dispatch({
-              type: 'LOGOUT_USER'
-            })
+            this.props.dispatch(logout(this.state))
           }}
         >
           <b>Logout</b>
