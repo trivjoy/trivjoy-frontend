@@ -47,7 +47,7 @@ export const login = data => {
           setUserState({
             token: response.data.token,
             isAuthenticated: true,
-            user: response.data.user
+            data: response.data.user
           })
         )
       })

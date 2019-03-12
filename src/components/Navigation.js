@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { logoutUser } from '../redux/actions/logout'
 
 const LogoTrivjoy = styled.img`
   height: 55px;
@@ -93,9 +94,8 @@ const Navigation = props => {
       {isAuthenticated && (
         <LogoutStyle
           onClick={() => {
-            props.dispatch({
-              type: 'LOGOUT'
-            })
+            props.dispatch(logoutUser())
+            props.history.push('/')
           }}
         >
           <b>Logout</b>
@@ -111,4 +111,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Navigation)
+export default withRouter(connect(mapStateToProps)(Navigation))

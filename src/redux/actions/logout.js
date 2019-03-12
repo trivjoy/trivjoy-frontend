@@ -1,4 +1,4 @@
-import request from '../request'
+import { request } from '../../helpers/index'
 import browserStorage from '../browserStorage'
 
 export const logoutBegin = () => ({
