@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { getTrips } from '../redux/actions/trips'
 
 const Content = styled.div`
   flex: 1;
@@ -71,66 +71,90 @@ const TitleStyled = styled.h2`
   margin: 5px 0px 0px 10px;
 `
 
-const Trips = props => {
-  const user = []
+class Trips extends React.Component {
+  componentDidMount = async () => {
+    this.props.dispatch(getTrips())
+  }
+  render() {
+    return (
+      <Container>
+        <Header />
+        <Content>
+          {this.props.trips.length > 0 ? (
+            this.props.trips.map((item, index) => {
+              return (
+                <CardsStyle key={index}>
+                  <ImageCards src={item.image} alt="" />
+                  <TitleStyled>{item.title}</TitleStyled>
+                  <DiscribeTopCards>
+                    <b>
+                      Sakti Dewantoro,<b> 24</b>
+                    </b>
+                    <div>
+                      <LocationLogo
+                        src="/assets/logo/maps-and-flags.svg"
+                        alt=""
+                      />
+                      <b>Bandung</b>
+                    </div>
+                  </DiscribeTopCards>
 
-  return (
-    <Container>
-      <Header />
-      <Content>
-        {user.map((item, index) => {
-          return (
-            <CardsStyle key={index}>
-              <ImageCards src={item.trips.pictures} alt="" />
-              <TitleStyled>{item.trips.title}</TitleStyled>
-              <DiscribeTopCards>
-                <b>
-                  {item.fullname},<b> 24</b>
-                </b>
-                <div>
-                  <LocationLogo src="/assets/logo/maps-and-flags.svg" alt="" />
-                  <b>{item.city}</b>
-                </div>
-              </DiscribeTopCards>
-
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/hammock.svg" alt="" />
-                <b>Tour Destination:{item.trips.tour_destination}</b>
-              </DiscribeBottomCards>
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/calendar.svg" alt="" />
-                <b>
-                  Date: {item.trips.date_departure}
-                  {item.trips.date_return}
-                </b>
-              </DiscribeBottomCards>
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/purse.svg" alt="" />
-                <b>Budget:{item.trips.budget}</b>
-              </DiscribeBottomCards>
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
-                <b>People Can Join:{item.trips.people_can_join}</b>
-              </DiscribeBottomCards>
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/success.svg" alt="" />
-                <b>Already Join:{item.trips.alredy_join}</b>
-              </DiscribeBottomCards>
-              <ReadMoreStyle>
-                <b>Read More</b>
-              </ReadMoreStyle>
-            </CardsStyle>
-          )
-        })}
-      </Content>
-      <Footer />
-    </Container>
-  )
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/hammock.svg" alt="" />
+                    <b>Tour Destination:{item.tourDestination}</b>
+                  </DiscribeBottomCards>
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/calendar.svg" alt="" />
+                    <b>
+                      Date:{' '}
+                      {new Intl.DateTimeFormat('id-ID', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      }).format(new Date(item.dateFrom))}{' '}
+                      -{' '}
+                      {new Intl.DateTimeFormat('id-ID', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      }).format(new Date(item.dateTo))}
+                    </b>
+                  </DiscribeBottomCards>
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/purse.svg" alt="" />
+                    <b>Budget:{item.budget}</b>
+                  </DiscribeBottomCards>
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
+                    <b>
+                      People Can Join:{item.peopleMin} - {item.peopleMax}
+                    </b>
+                  </DiscribeBottomCards>
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/success.svg" alt="" />
+                    <b>Already Join:0</b>
+                  </DiscribeBottomCards>
+                  <ReadMoreStyle>
+                    <b>Read More</b>
+                  </ReadMoreStyle>
+                </CardsStyle>
+              )
+            })
+          ) : (
+            <h1>Kosong</h1>
+          )}
+        </Content>
+        <Footer />
+      </Container>
+    )
+  }
 }
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    trips: state.trips.data
   }
 }
 
