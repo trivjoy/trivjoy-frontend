@@ -165,7 +165,7 @@ const Profile = ({ user }) => {
 const mapStateToProps = state => {
   return {
     // might contain name, email, token, isAuthenticated
-    user: state.user.data
+    user: state.user.data._doc
   }
 }
 
