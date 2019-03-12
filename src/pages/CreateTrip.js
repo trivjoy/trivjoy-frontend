@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { createTrips } from '../redux/actions/create-trips'
+import { connect } from 'react-redux'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
@@ -96,75 +97,171 @@ const ButtonCreatePost = styled.input`
   }
 `
 
-const CreateTrip = () => {
-  return (
-    <Container>
-      <Header />
-      <Content>
-        <form action="">
-          <TitleForm>
-            <h2>Post Your Trip!</h2>
-          </TitleForm>
+class CreateTrip extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      title: 'Bali',
+      tourDestination: 'Loc A, Loc B, Loc C',
+      dateFrom: '12/03/2018',
+      dateTo: '15/03/2018',
+      budget: '700000',
+      image: '/assets/images/first-section-1.jpg',
+      description:
+        'I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together.  I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together. I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together. I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together. ',
+      peopleMin: '2',
+      peopleMax: '10'
+    }
+  }
 
-          <MarginInput>
-            <LabelInput>Trip Title:</LabelInput>
-            <TripTitleLabel type="text" placeholder="Trip to..." required />
-          </MarginInput>
-          <MarginInput>
-            <LabelInput>Tour Destination:</LabelInput>
-            <TourDetinationLabel
-              type="text"
-              placeholder="Location A, Location B, Location C,..."
-              required
-            />
-          </MarginInput>
-          <MarginInput>
-            <LabelInput>Date:</LabelInput>
-            <DateLabel type="date" required />
-            <LabelTo>To</LabelTo>
-            <DateLabel type="date" required />
-          </MarginInput>
-          <MarginInput>
-            <LabelInput>Budget (IDR):</LabelInput>
-            <BudgetLabel type="text" placeholder="700000" required />
-          </MarginInput>
-          <UploadStyle>
-            <UploadLabel>Upload Travel Destination Images</UploadLabel>
+  clearInputText = () => {
+    this.setState({
+      title: '',
+      tourDestination: '',
+      dateFrom: '',
+      dateTo: '',
+      budget: '',
+      image: '',
+      description: '',
+      peopleMin: '',
+      peopleMax: ''
+    })
+  }
+
+  onSubmit = async () => {
+    this.props.dispatch(createTrips(this.state))
+
+    this.clearInputText()
+  }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  render() {
+    return (
+      <Container>
+        <Header />
+        <Content>
+          <form
+            onSubmit={event => {
+              event.preventDefault()
+              this.onSubmit()
+            }}
+          >
+            <TitleForm>
+              <h2>Post Your Trip!</h2>
+            </TitleForm>
+
             <MarginInput>
-              <UploadButtonStyled>Pick Image</UploadButtonStyled>
+              <LabelInput>Trip Title:</LabelInput>
+              <TripTitleLabel
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Trip to..."
+                value={this.state.title}
+                required
+              />
             </MarginInput>
-          </UploadStyle>
-          <MarginInput>
-            <LabelInput>People Can Join:</LabelInput>
-            <input
-              type="number"
-              name="quantity"
-              min="1"
-              max="100"
-              placeholder="Min"
-              required
-            />
-            <input
-              type="number"
-              name="quantity"
-              min="1"
-              max="100"
-              placeholder="Max"
-            />
-          </MarginInput>
+            <MarginInput>
+              <LabelInput>Tour Destination:</LabelInput>
+              <TourDetinationLabel
+                onChange={this.handleChange}
+                type="text"
+                placeholder="Location A, Location B, Location C,..."
+                value={this.state.tourDestination}
+                required
+              />
+            </MarginInput>
+            <MarginInput>
+              <LabelInput>Date:</LabelInput>
+              <DateLabel
+                type="date"
+                onChange={event => {
+                  this.setState({
+                    dateFrom: event.target.value
+                  })
+                }}
+                value={this.state.dateFrom}
+                required
+              />
+              <LabelTo>To</LabelTo>
+              <DateLabel
+                type="date"
+                onChange={event => {
+                  this.setState({
+                    dateTo: event.target.value
+                  })
+                }}
+                value={this.state.dateTo}
+                required
+              />
+            </MarginInput>
+            <MarginInput>
+              <LabelInput>Budget (IDR):</LabelInput>
+              <BudgetLabel
+                type="text"
+                onChange={this.handleChange}
+                placeholder="700000"
+                value={this.state.budget}
+                required
+              />
+            </MarginInput>
+            <UploadStyle>
+              <UploadLabel>Upload Travel Destination Images</UploadLabel>
+              <MarginInput>
+                <UploadButtonStyled>Pick Image</UploadButtonStyled>
+              </MarginInput>
+            </UploadStyle>
+            <MarginInput>
+              <LabelInput>People Can Join:</LabelInput>
+              <input
+                type="number"
+                name="quantity"
+                min="1"
+                max="100"
+                placeholder="Min"
+                onChange={this.handleChange}
+                value={this.state.peopleMin}
+                required
+              />
+              <input
+                type="number"
+                name="quantity"
+                min="1"
+                max="100"
+                placeholder="Max"
+                onChange={this.handleChange}
+                value={this.state.peopleMax}
+              />
+            </MarginInput>
 
-          <DiscriptionStyle>
-            <b>Discription of Your Trip:</b>
-            <TextAreaStyle name="" id="" cols="80" rows="10" />
-          </DiscriptionStyle>
-          <CreatePostStyle>
-            <ButtonCreatePost type="submit" value="Create New Trip" />
-          </CreatePostStyle>
-        </form>
-      </Content>
-      <Footer />
-    </Container>
-  )
+            <DiscriptionStyle>
+              <b>Discription of Your Trip:</b>
+              <TextAreaStyle
+                onChange={this.handleChange}
+                cols="80"
+                rows="10"
+                value={this.state.description}
+              />
+            </DiscriptionStyle>
+            <CreatePostStyle>
+              <ButtonCreatePost type="submit" value="Create New Trip" />
+            </CreatePostStyle>
+          </form>
+        </Content>
+        <Footer />
+      </Container>
+    )
+  }
 }
 
-export default CreateTrip
+const mapStateToProps = state => {
+  return {
+    create_trips: state.create_trips
+  }
+}
+
+export default connect(mapStateToProps)(CreateTrip)
