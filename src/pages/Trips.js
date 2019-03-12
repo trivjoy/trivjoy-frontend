@@ -143,7 +143,7 @@ class Trips extends React.Component {
               )
             })
           ) : (
-            <h1>Kosong</h1>
+            <span>Loading Available Trips...</span>
           )}
         </Content>
         <Footer />
