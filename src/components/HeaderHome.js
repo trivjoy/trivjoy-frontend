@@ -37,7 +37,7 @@ const HeaderButton = styled.button`
   }
 `
 
-const DescribeHomeHeader = styled.h2`
+const DescribeHomeHeader = styled.header`
   text-shadow: 1px 2px 4px white;
   margin-top: 50px;
   color: #2f80ed;
