@@ -7,6 +7,7 @@ import userReducer from './users'
 import logoutReducer from './logout'
 import createTripsReducer from './create-trips'
 import tripsReducer from './trips'
+import tripDetailsReducer from './trip-details'
 
 export default combineReducers({
   // router: connectRouter(history),
@@ -15,5 +16,6 @@ export default combineReducers({
   user: userReducer,
   logout: logoutReducer,
   create_trips: createTripsReducer,
-  trips: tripsReducer
+  trips: tripsReducer,
+  tripDetails: tripDetailsReducer
 })

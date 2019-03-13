@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { getTripDetails } from '../redux/actions/trip-details'
 
 const Content = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -103,43 +104,18 @@ const ButtonRequest = styled.div`
 `
 
 class TripDetails extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      trip: null,
-      user: {
-        name: '',
-        city: '',
-        gender: '',
-        age: ''
-      }
-    }
-  }
-
   componentDidMount() {
-    const trip = this.props.trips.find(
-      trip => trip.id === Number(this.props.match.params.id)
-    )
-    this.setState({
-      trip
-    })
-
-    const author = this.props.trips.find(
-      author => author._id === this.props.user._id
-    )
-    this.setState({
-      user: author
-    })
+    this.props.dispatch(getTripDetails(this.props.match.params.id))
   }
 
   render() {
     return (
-      <Container>
-        <Header />
+      this.props.trip && (
+        <Container>
+          <Header />
 
-        {this.state.trip && (
           <Content>
-            <TitleStyled>{this.state.trip.title}</TitleStyled>
+            <TitleStyled>{this.props.trip.title}</TitleStyled>
             <ImageCards src="/assets/images/first-section-1.jpg" alt="" />
 
             <UserCardDetails>
@@ -150,21 +126,24 @@ class TripDetails extends React.Component {
                 <div>
                   <DiscribeTopCards>
                     <b>
-                      Sakti Dewantoro,<b> 24</b>
+                      {this.props.trip.author.name},
+                      <b> {this.props.trip.author.age}</b>
                     </b>
                     <div>
                       <LocationLogo
                         src="/assets/logo/maps-and-flags.svg"
                         alt=""
                       />
-                      <LocationStyle>Bandung</LocationStyle>
+                      <LocationStyle>
+                        {this.props.trip.author.city}
+                      </LocationStyle>
                     </div>
-                    <b>Male</b>
+                    <b>{this.props.trip.author.gender}</b>
                   </DiscribeTopCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/hammock.svg" alt="" />
                     <DiscribeStyle>
-                      Tour Destination: {this.state.trip.tourDestination}
+                      Tour Destination: {this.props.trip.tourDestination}
                     </DiscribeStyle>
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
@@ -176,37 +155,37 @@ class TripDetails extends React.Component {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
-                      }).format(new Date(this.state.trip.dateFrom))}{' '}
+                      }).format(new Date(this.props.trip.dateFrom))}{' '}
                       -{' '}
                       {new Intl.DateTimeFormat('id-ID', {
                         weekday: 'long',
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
-                      }).format(new Date(this.state.trip.dateTo))}
+                      }).format(new Date(this.props.trip.dateTo))}
                     </DiscribeStyle>
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/purse.svg" alt="" />
                     <DiscribeStyle>
-                      Budget: {this.state.trip.budget}
+                      Budget: {this.props.trip.budget}
                     </DiscribeStyle>
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
                     <DiscribeStyle>
-                      People Can Join: {this.state.trip.peopleMin} -{' '}
-                      {this.state.trip.peopleMax}
+                      People Can Join: {this.props.trip.peopleMin} -{' '}
+                      {this.props.trip.peopleMax}
                     </DiscribeStyle>
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/success.svg" alt="" />
                     <DiscribeStyle>
-                      Alredy Join: {this.state.trip.users_joined.length}
+                      Alredy Join: {this.props.trip.users_joined.length}
                     </DiscribeStyle>
                   </DiscribeBottomCards>
                   <DiscribeStyle>Trip Discribe:</DiscribeStyle>
-                  <TripDiscribe>{this.state.trip.description}</TripDiscribe>
+                  <TripDiscribe>{this.props.trip.description}</TripDiscribe>
                   <ButtonRequest>
                     <ButtonRequestJoin>
                       <b>Request to Join</b>
@@ -216,18 +195,17 @@ class TripDetails extends React.Component {
               </ContentRight>
             </UserCardDetails>
           </Content>
-        )}
 
-        <Footer />
-      </Container>
+          <Footer />
+        </Container>
+      )
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    trips: state.trips.data,
-    user: state.user.data
+    trip: state.tripDetails.data
   }
 }
 

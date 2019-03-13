@@ -7,7 +7,7 @@ export const getTripDetailsBegin = () => ({
 export const getTripDetailsSuccess = response => {
   return {
     type: 'GET_TRIP_DETAILS_SUCCESS',
-    payload: response.data.trips
+    payload: response.data.result
   }
 }
 
@@ -16,13 +16,13 @@ export const getTripDetailsError = error => ({
   payload: error
 })
 
-export const getTripDetails = () => {
+export const getTripDetails = id => {
   return dispatch => {
     dispatch(getTripDetailsBegin())
 
     request({
       method: 'get',
-      url: '/trips/:id'
+      url: `/trips/${id}`
     })
       .then(response => {
         dispatch(getTripDetailsSuccess(response))
