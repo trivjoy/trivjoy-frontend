@@ -2,6 +2,7 @@ import React from 'react'
 import Navigation from './Navigation'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const ContainerHeader = styled.div`
   background-image: url('/assets/images/header-background.jpg');
@@ -21,6 +22,8 @@ const HeaderButtons = styled.div`
 `
 
 const HeaderButton = styled.button`
+  display: flex;
+  justify-content: center;
   font-size: 20px;
   padding: 10px 20px;
   margin: 0 10px;
@@ -39,7 +42,7 @@ const HeaderButton = styled.button`
 
 const DescribeHomeHeader = styled.header`
   text-shadow: 1px 2px 4px white;
-  margin-top: 50px;
+  margin-top: 80px;
   color: #2f80ed;
 `
 
@@ -47,7 +50,8 @@ const HomeHeaderContent = styled.div`
   text-align: center;
 `
 
-const HeaderHome = () => {
+const HeaderHome = props => {
+  const isAuthenticated = props.isAuthenticated
   return (
     <ContainerHeader>
       <Navigation />
@@ -59,12 +63,21 @@ const HeaderHome = () => {
         <HeaderButtons>
           <Link to="/trips">
             <HeaderButton>Discover Trips</HeaderButton>
-            <HeaderButton>Register Now</HeaderButton>
           </Link>
+          {!isAuthenticated && (
+            <Link to="/register">
+              <HeaderButton>Register Now</HeaderButton>
+            </Link>
+          )}
         </HeaderButtons>
       </HomeHeaderContent>
     </ContainerHeader>
   )
 }
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.user.isAuthenticated
+  }
+}
 
-export default HeaderHome
+export default connect(mapStateToProps)(HeaderHome)

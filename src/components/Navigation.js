@@ -22,7 +22,7 @@ const NavStyle = styled.nav`
 `
 
 const LogoPosition = styled.div`
-  width: 860px;
+  width: 930px;
 `
 const RegisterStyle = styled.button`
   font-size: 14px;
@@ -51,6 +51,10 @@ const LogoutStyle = styled.button`
 
 const StyledLink = styled(Link)`
   margin: 0px;
+`
+
+const StyledCreateTrip = styled(Link)`
+  width: 50px;
 `
 
 const Navigation = props => {
@@ -82,9 +86,9 @@ const Navigation = props => {
       )}
 
       {isAuthenticated && (
-        <Link to="/create">
+        <StyledCreateTrip to="/create">
           <b>Create Trip</b>
-        </Link>
+        </StyledCreateTrip>
       )}
       {isAuthenticated && (
         <Link to="/profile">
