@@ -2,6 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { getTripDetails } from '../redux/actions/trip-details'
 
 const Content = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -101,76 +103,110 @@ const ButtonRequest = styled.div`
   justify-content: center;
 `
 
-const TripDetails = () => {
-  return (
-    <Container>
-      <Header />
+class TripDetails extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(getTripDetails(this.props.match.params.id))
+  }
 
-      <Content>
-        <TitleStyled>Title</TitleStyled>
-        <ImageCards src="/assets/images/first-section-1.jpg" alt="" />
+  render() {
+    return (
+      this.props.trip && (
+        <Container>
+          <Header />
 
-        <UserCardDetails>
-          <ContentLeft>
-            <ProfileImage src="/assets/logo/man.svg" alt="" />
-          </ContentLeft>
-          <ContentRight>
-            <div>
-              <DiscribeTopCards>
-                <b>
-                  Sakti Dewantoro,<b> 24</b>
-                </b>
+          <Content>
+            <TitleStyled>{this.props.trip.title}</TitleStyled>
+            <ImageCards src="/assets/images/first-section-1.jpg" alt="" />
+
+            <UserCardDetails>
+              <ContentLeft>
+                <ProfileImage src="/assets/logo/man.svg" alt="" />
+              </ContentLeft>
+              <ContentRight>
                 <div>
-                  <LocationLogo src="/assets/logo/maps-and-flags.svg" alt="" />
-                  <LocationStyle>Bandung</LocationStyle>
+                  <DiscribeTopCards>
+                    <b>
+                      {this.props.trip.author.name},
+                      <b> {this.props.trip.author.age}</b>
+                    </b>
+                    <div>
+                      <LocationLogo
+                        src="/assets/logo/maps-and-flags.svg"
+                        alt=""
+                      />
+                      <LocationStyle>
+                        {this.props.trip.author.city}
+                      </LocationStyle>
+                    </div>
+                    <b>{this.props.trip.author.gender}</b>
+                  </DiscribeTopCards>
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/hammock.svg" alt="" />
+                    <DiscribeStyle>
+                      Tour Destination: {this.props.trip.tourDestination}
+                    </DiscribeStyle>
+                  </DiscribeBottomCards>
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/calendar.svg" alt="" />
+                    <DiscribeStyle>
+                      Date:{' '}
+                      {new Intl.DateTimeFormat('id-ID', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      }).format(new Date(this.props.trip.dateFrom))}{' '}
+                      -{' '}
+                      {new Intl.DateTimeFormat('id-ID', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      }).format(new Date(this.props.trip.dateTo))}
+                    </DiscribeStyle>
+                  </DiscribeBottomCards>
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/purse.svg" alt="" />
+                    <DiscribeStyle>
+                      Budget: {this.props.trip.budget}
+                    </DiscribeStyle>
+                  </DiscribeBottomCards>
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
+                    <DiscribeStyle>
+                      People Can Join: {this.props.trip.peopleMin} -{' '}
+                      {this.props.trip.peopleMax}
+                    </DiscribeStyle>
+                  </DiscribeBottomCards>
+                  <DiscribeBottomCards>
+                    <LogoStyle src="/assets/logo/success.svg" alt="" />
+                    <DiscribeStyle>
+                      Alredy Join: {this.props.trip.users_joined.length}
+                    </DiscribeStyle>
+                  </DiscribeBottomCards>
+                  <DiscribeStyle>Trip Discribe:</DiscribeStyle>
+                  <TripDiscribe>{this.props.trip.description}</TripDiscribe>
+                  <ButtonRequest>
+                    <ButtonRequestJoin>
+                      <b>Request to Join</b>
+                    </ButtonRequestJoin>
+                  </ButtonRequest>
                 </div>
-                <b>Male</b>
-              </DiscribeTopCards>
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/hammock.svg" alt="" />
-                <DiscribeStyle>Tour Destination:</DiscribeStyle>
-              </DiscribeBottomCards>
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/calendar.svg" alt="" />
-                <DiscribeStyle>Date:</DiscribeStyle>
-              </DiscribeBottomCards>
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/purse.svg" alt="" />
-                <DiscribeStyle>Budget:</DiscribeStyle>
-              </DiscribeBottomCards>
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
-                <DiscribeStyle>People Can Join:</DiscribeStyle>
-              </DiscribeBottomCards>
-              <DiscribeBottomCards>
-                <LogoStyle src="/assets/logo/success.svg" alt="" />
-                <DiscribeStyle>Alredy Join:</DiscribeStyle>
-              </DiscribeBottomCards>
-              <DiscribeStyle>Trip Discribe:</DiscribeStyle>
-              <TripDiscribe>
-                I just want going to mount bromo and enjoy the vacation, so i
-                want to invite you to join my journey and create a moment
-                together. I just want going to mount bromo and enjoy the
-                vacation, so i want to invite you to join my journey and create
-                a moment together. I just want going to mount bromo and enjoy
-                the vacation, so i want to invite you to join my journey and
-                create a moment together. I just want going to mount bromo and
-                enjoy the vacation, so i want to invite you to join my journey
-                and create a moment together.{' '}
-              </TripDiscribe>
-              <ButtonRequest>
-                <ButtonRequestJoin>
-                  <b>Request to Join</b>
-                </ButtonRequestJoin>
-              </ButtonRequest>
-            </div>
-          </ContentRight>
-        </UserCardDetails>
-      </Content>
+              </ContentRight>
+            </UserCardDetails>
+          </Content>
 
-      <Footer />
-    </Container>
-  )
+          <Footer />
+        </Container>
+      )
+    )
+  }
 }
 
-export default TripDetails
+const mapStateToProps = state => {
+  return {
+    trip: state.tripDetails.data
+  }
+}
+
+export default connect(mapStateToProps)(TripDetails)

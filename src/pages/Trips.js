@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { getTrips } from '../redux/actions/trips'
+import { getTripDetails } from '../redux/actions/trip-details'
 
 const Content = styled.div`
   flex: 1;
@@ -76,6 +77,7 @@ class Trips extends React.Component {
   componentDidMount = async () => {
     this.props.dispatch(getTrips())
   }
+
   render() {
     return (
       <Container>
@@ -84,7 +86,13 @@ class Trips extends React.Component {
           {this.props.trips.length > 0 ? (
             this.props.trips.map((item, index) => {
               return (
-                <CardsStyle key={index}>
+                <CardsStyle
+                  key={index}
+                  onClick={() => {
+                    this.props.dispatch(getTripDetails())
+                    this.props.history.push(`/trips/${item.id}`)
+                  }}
+                >
                   <ImageCards src={item.image} alt="" />
                   <TitleStyled>{item.title}</TitleStyled>
                   <DiscribeTopCards>
@@ -125,17 +133,17 @@ class Trips extends React.Component {
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/purse.svg" alt="" />
-                    <b>Budget:{item.budget}</b>
+                    <b>Budget (IDR): {item.budget}</b>
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
                     <b>
-                      People Can Join:{item.peopleMin} - {item.peopleMax}
+                      People Can Join: {item.peopleMin} - {item.peopleMax}
                     </b>
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/success.svg" alt="" />
-                    <b>Already Join:0</b>
+                    <b>Already Join: 0</b>
                   </DiscribeBottomCards>
                   <ReadMoreStyle>
                     <b>Read More</b>

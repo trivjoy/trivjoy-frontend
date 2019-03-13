@@ -101,10 +101,10 @@ class CreateTrip extends React.Component {
   constructor() {
     super()
     this.state = {
-      title: 'Bali',
+      title: '',
       tourDestination: 'Loc A, Loc B, Loc C',
-      dateFrom: '12/03/2018',
-      dateTo: '15/03/2018',
+      dateFrom: '',
+      dateTo: '',
       budget: '700000',
       image: '/assets/images/first-section-1.jpg',
       description:
@@ -159,6 +159,7 @@ class CreateTrip extends React.Component {
               <LabelInput>Trip Title:</LabelInput>
               <TripTitleLabel
                 onChange={this.handleChange}
+                name="title"
                 type="text"
                 placeholder="Trip to..."
                 value={this.state.title}
@@ -169,6 +170,7 @@ class CreateTrip extends React.Component {
               <LabelInput>Tour Destination:</LabelInput>
               <TourDetinationLabel
                 onChange={this.handleChange}
+                name="tourDestination"
                 type="text"
                 placeholder="Location A, Location B, Location C,..."
                 value={this.state.tourDestination}
@@ -179,6 +181,7 @@ class CreateTrip extends React.Component {
               <LabelInput>Date:</LabelInput>
               <DateLabel
                 type="date"
+                name="dateFrom"
                 onChange={event => {
                   this.setState({
                     dateFrom: event.target.value
@@ -190,6 +193,7 @@ class CreateTrip extends React.Component {
               <LabelTo>To</LabelTo>
               <DateLabel
                 type="date"
+                name="dateTo"
                 onChange={event => {
                   this.setState({
                     dateTo: event.target.value
@@ -203,6 +207,7 @@ class CreateTrip extends React.Component {
               <LabelInput>Budget (IDR):</LabelInput>
               <BudgetLabel
                 type="text"
+                name="budget"
                 onChange={this.handleChange}
                 placeholder="700000"
                 value={this.state.budget}
@@ -242,6 +247,7 @@ class CreateTrip extends React.Component {
               <b>Discription of Your Trip:</b>
               <TextAreaStyle
                 onChange={this.handleChange}
+                name="description"
                 cols="80"
                 rows="10"
                 value={this.state.description}
