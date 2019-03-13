@@ -55,6 +55,7 @@ const DiscribeTopCards = styled.div`
 `
 const ImageCards = styled.img`
   border-radius: 5px 5px 0px 0px;
+  height: 230px;
 `
 const ReadMoreStyle = styled.div`
   display: flex;
