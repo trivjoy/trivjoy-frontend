@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
+
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { register } from '../redux/actions/register'
@@ -101,6 +102,11 @@ const StyledCityForm = styled.input`
   border: 1px solid #333333;
 `
 
+const ValidationError = styled.div`
+  font-size: 18px;
+  color: red;
+`
+
 class Register extends React.Component {
   constructor() {
     super()
@@ -136,14 +142,19 @@ class Register extends React.Component {
   onSubmit = async () => {
     const { isSubmitted, ...data } = this.state
 
-    this.props.dispatch(register(data))
+    const result = await this.props.dispatch(register(data))
+    console.log(result)
 
-    this.clearInputText()
+    if (!this.props.error) {
+      this.clearInputText()
+    }
   }
 
   render() {
-    if (this.state.isSubmitted && !this.props.error) {
-      return <Redirect to="/login" />
+    if (this.state.isSubmitted) {
+      if (!this.props.error) {
+        return <Redirect to="/login" />
+      }
     }
     return (
       <Container>
@@ -157,7 +168,11 @@ class Register extends React.Component {
           }}
         >
           <TitleRegister>Join us as a Trivjoy member!</TitleRegister>
-
+          {this.props.error ? (
+            <ValidationError>
+              {'User is already exist with that email and Phone Number!'}
+            </ValidationError>
+          ) : null}
           <Label>Full name:</Label>
           <StyledInputForm
             onChange={event => {
