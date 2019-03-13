@@ -136,14 +136,20 @@ class Register extends React.Component {
   onSubmit = async () => {
     const { isSubmitted, ...data } = this.state
 
-    this.props.dispatch(register(data))
+    await this.props.dispatch(register(data))
 
-    this.clearInputText()
+    if (!this.props.error) {
+      this.clearInputText()
+    }
   }
 
   render() {
-    if (this.state.isSubmitted && !this.props.error) {
-      return <Redirect to="/login" />
+    console.log(!this.props.error)
+
+    if (this.state.isSubmitted) {
+      if (!this.props.error) {
+        return <Redirect to="/login" />
+      }
     }
     return (
       <Container>
