@@ -28,12 +28,12 @@ class App extends Component {
             <Route path="/login" component={Login} />
             <Route path="/profile" component={Profile} />
             <Route path="/post" component={Post} />
-            <Route path="/trips" component={Trips} />
             <Route path="/about" component={About} />
             <Route path="/safety" component={Safety} />
             <Route path="/help" component={Help} />
             <Route path="/create" component={CreateTrip} />
-            <Route path={`/trips/:id`} component={TripDetails} />
+            <Route path="/trips/:id" component={TripDetails} />
+            <Route path="/trips" component={Trips} />
           </Switch>
         </Router>
       </Provider>
