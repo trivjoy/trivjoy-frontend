@@ -5,15 +5,15 @@ export const register = data => {
     dispatch(registerStarted())
 
     try {
-      const response = await request({
+      await request({
         method: 'post',
         url: '/users/register',
         data
       })
 
-      dispatch(registerSuccess(response))
+      dispatch(registerSuccess())
     } catch (error) {
-      dispatch(registerError(error))
+      dispatch(registerError())
     }
   }
 }
@@ -22,16 +22,10 @@ const registerStarted = () => ({
   type: 'REGISTER_PROCESS'
 })
 
-const registerSuccess = response => ({
-  type: 'REGISTER_SUCCESS',
-  payload: {
-    users: response.data.users
-  }
+const registerSuccess = () => ({
+  type: 'REGISTER_SUCCESS'
 })
 
 const registerError = error => ({
-  type: 'REGISTER_ERROR',
-  payload: {
-    error
-  }
+  type: 'REGISTER_ERROR'
 })

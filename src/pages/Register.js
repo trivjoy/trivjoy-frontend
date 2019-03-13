@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import HeaderLoginAndRegister from '../components/HeaderLoginAndRegister'
 import styled from 'styled-components'
@@ -109,11 +109,12 @@ class Register extends React.Component {
       email: '',
       phone: '',
       age: '',
-      gender: '',
+      gender: 'Male',
       address: '',
       city: '',
       country: '',
-      password: ''
+      password: '',
+      isSubmitted: false
     }
   }
 
@@ -127,17 +128,23 @@ class Register extends React.Component {
       address: '',
       city: '',
       country: '',
-      password: ''
+      password: '',
+      isSubmitted: true
     })
   }
 
   onSubmit = async () => {
-    this.props.dispatch(register(this.state))
+    const { isSubmitted, ...data } = this.state
+
+    this.props.dispatch(register(data))
 
     this.clearInputText()
   }
 
   render() {
+    if (this.state.isSubmitted && !this.props.error) {
+      return <Redirect to="/login" />
+    }
     return (
       <Container>
         <GlobalStyle />
@@ -288,7 +295,7 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users
+    error: state.register.error
   }
 }
 

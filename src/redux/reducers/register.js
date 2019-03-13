@@ -1,12 +1,6 @@
 const usersInitialState = {
-  name: '',
-  email: '',
-  phone: '',
-  age: '',
-  gender: '',
-  city: '',
-  address: '',
-  password: ''
+  loading: false,
+  error: false
 }
 
 const registerReducer = (state = usersInitialState, action) => {
@@ -20,23 +14,15 @@ const registerReducer = (state = usersInitialState, action) => {
     case 'REGISTER_SUCCESS':
       return {
         ...state,
-        loading: false,
-        error: null,
-        users: [...state.todos, action.payload.todo]
+        loading: false
       }
 
     case 'REGISTER_ERROR':
       return {
         ...state,
         loading: false,
-        error: action.payload.error
+        error: true
       }
-
-    case 'GET_TUSER': {
-      return {
-        users: state
-      }
-    }
 
     default: {
       return state
