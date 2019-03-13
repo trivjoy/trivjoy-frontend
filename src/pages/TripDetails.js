@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { getTripDetails } from '../redux/actions/trip-details'
+import { Redirect } from 'react-router-dom'
 
 const Content = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -109,6 +110,9 @@ class TripDetails extends React.Component {
   }
 
   render() {
+    if (!this.props.isAuthenticated) {
+      return <Redirect to="/trips" />
+    }
     return (
       this.props.trip && (
         <Container>
@@ -205,7 +209,8 @@ class TripDetails extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    trip: state.tripDetails.data
+    trip: state.tripDetails.data,
+    isAuthenticated: state.user.isAuthenticated
   }
 }
 
