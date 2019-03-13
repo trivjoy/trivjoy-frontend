@@ -97,14 +97,14 @@ class Trips extends React.Component {
                   <TitleStyled>{item.title}</TitleStyled>
                   <DiscribeTopCards>
                     <b>
-                      Sakti Dewantoro,<b> 24</b>
+                      {item.author.name},<b> {item.author.age}</b>
                     </b>
                     <div>
                       <LocationLogo
                         src="/assets/logo/maps-and-flags.svg"
                         alt=""
                       />
-                      <b>Bandung</b>
+                      <b> {item.author.city}</b>
                     </div>
                   </DiscribeTopCards>
 
