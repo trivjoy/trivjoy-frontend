@@ -17,7 +17,7 @@ const StyledH1 = styled.h1`
   text-align: center;
   font-size: 30px;
 `
-const StyledHelpParagraph = styled.p`
+const StyledHelpParagraph = styled.div`
   justify-content: center;
   text-align: justify;
   font-size: 15px;

@@ -117,8 +117,9 @@ const ApprovedAndWaiting = styled.b`
 `
 const RequestList = styled.b`
   margin: 0px auto;
+  font-size: 16px;
 `
-const ApprovedAndWaitingPositin = styled.div`
+const ApprovedAndWaitingPosition = styled.div`
   display: flex;
   justify-content: space-around;
   flex-direction: row;
@@ -131,6 +132,18 @@ const ApproveSymbol = styled.img`
     cursor: pointer;
   }
 `
+const UserApprove = styled.div`
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+`
+const UserApproved = styled.b`
+  font-size: 18px;
+`
+const UserPhone = styled.p`
+  font-size: 18px;
+  margin: 0 auto;
+`
 
 class TripDetails extends React.Component {
   componentDidMount() {
@@ -138,25 +151,41 @@ class TripDetails extends React.Component {
   }
 
   render() {
-    let currentUserId, tripAuthorId
+    let currentUserId,
+      tripAuthorId,
+      isApproved,
+      isRequest,
+      tripAuthorPhone,
+      tripAuthorName
 
     if (this.props.user && this.props.trip) {
       currentUserId = this.props.user._id
       tripAuthorId = this.props.trip.author._id
+      tripAuthorPhone = this.props.trip.author.phone
+      tripAuthorName = this.props.trip.author.name
+
+      isRequest = this.props.trip.users_requested.find(
+        user => user._id === currentUserId
+      )
+
+      isApproved = this.props.trip.users_joined.find(
+        user => user._id === currentUserId
+      )
     }
+
     const JoinButton = props =>
       props.isAuthor ? (
         <RequestContent>
           <RequestList>Request List</RequestList>
-          <ApprovedAndWaitingPositin>
+          <ApprovedAndWaitingPosition>
             <div>
-              <ApprovedAndWaiting>Approved Buddies</ApprovedAndWaiting>
+              <ApprovedAndWaiting> Approved Buddies</ApprovedAndWaiting>
               {this.props.trip.users_joined.map((item, index) => {
                 return (
-                  <div key={index}>
-                    <b>{item.name}</b>
-                    <div> {item.phone}</div>
-                  </div>
+                  <UserApprove key={index}>
+                    <UserApproved>{item.name}</UserApproved>
+                    <UserPhone> ( {item.phone} ) </UserPhone>
+                  </UserApprove>
                 )
               })}
             </div>
@@ -180,14 +209,34 @@ class TripDetails extends React.Component {
               })}
               <div />
             </div>
-          </ApprovedAndWaitingPositin>
+          </ApprovedAndWaitingPosition>
         </RequestContent>
       ) : (
-        <ButtonRequestJoin
-          onClick={() => this.props.dispatch(requestJoin(this.props.trip.id))}
-        >
-          <b>Request to Join</b>
-        </ButtonRequestJoin>
+        <div>
+          {isRequest ? (
+            <b>Waiting approved...</b>
+          ) : !isApproved ? (
+            <ButtonRequestJoin
+              onClick={() =>
+                this.props.dispatch(requestJoin(this.props.trip.id))
+              }
+            >
+              <b>Request to Join</b>
+            </ButtonRequestJoin>
+          ) : (
+            <div>
+              <div>
+                <b>Approved</b>
+              </div>
+              <div>
+                <b>{tripAuthorName}</b>
+              </div>
+              <div>
+                <b> {tripAuthorPhone}</b>
+              </div>
+            </div>
+          )}
+        </div>
       )
 
     return (
