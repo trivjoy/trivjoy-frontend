@@ -41,7 +41,11 @@ const StyledInputForm = styled.input`
   height: 30px;
   width: 350px;
   border-radius: 40px;
-  border: 1px solid #333333;
+  border: 3px solid #333333;
+  outline: none;
+  :focus {
+    border-color: #68bffd;
+  }
 `
 const StyledButtonLogin = styled.input`
   margin: 30px 0px 20px 175px;
@@ -55,6 +59,7 @@ const StyledButtonLogin = styled.input`
   :hover {
     cursor: pointer;
     background-color: #68bffd;
+    border-radius: 40px;
   }
 `
 
@@ -89,6 +94,12 @@ const DoesntHaveAccount = styled.p`
   margin-top: 0px;
   margin-bottom: 0px;
 `
+const ValidationError = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  color: red;
+`
 
 class Login extends React.Component {
   constructor() {
@@ -111,6 +122,9 @@ class Login extends React.Component {
   }
 
   render() {
+    // console.log(this.props.isAuthenticated)
+
+    console.log(this.props.error)
     if (this.props.isAuthenticated) {
       return <Redirect to="/" />
     }
@@ -123,7 +137,9 @@ class Login extends React.Component {
 
         <ContainerForm onSubmit={this.onSubmit}>
           <TitleRegister>Log In To Trivjoy</TitleRegister>
-
+          {this.props.error ? (
+            <ValidationError>{'Email and password failed!'}</ValidationError>
+          ) : null}
           <StyledInputForm
             onChange={this.handleChange}
             name="email"
@@ -162,7 +178,8 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.user.isAuthenticated
+    isAuthenticated: state.user.isAuthenticated,
+    error: state.login.error
   }
 }
 

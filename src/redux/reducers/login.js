@@ -1,7 +1,8 @@
 const initialState = {
   latestResponse: null,
   latestError: null,
-  isLoading: false
+  isLoading: false,
+  error: false
 }
 
 const loginReducer = (state = initialState, action) => {
@@ -27,7 +28,8 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         latestError: action.payload.error,
-        latestResponse: null
+        latestResponse: null,
+        error: true
       }
     }
 
