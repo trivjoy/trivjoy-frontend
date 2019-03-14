@@ -4,6 +4,8 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { getTripDetails } from '../redux/actions/trip-details'
+import { requestJoin } from '../redux/actions/requestJoin'
+import { approveJoin } from '../redux/actions/approveJoin'
 
 const Content = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -121,7 +123,20 @@ const ApprovedAndWaitingPositin = styled.div`
   justify-content: space-around;
   flex-direction: row;
 `
-
+const RemoveSymbol = styled.img`
+  height: 20px;
+  width: 20px;
+  :hover {
+    cursor: pointer;
+  }
+`
+const ApproveSymbol = styled.img`
+  height: 25px;
+  width: 25px;
+  :hover {
+    cursor: pointer;
+  }
+`
 class TripDetails extends React.Component {
   componentDidMount() {
     this.props.dispatch(getTripDetails(this.props.match.params.id))
@@ -141,14 +156,37 @@ class TripDetails extends React.Component {
           <ApprovedAndWaitingPositin>
             <div>
               <ApprovedAndWaiting>Approved Buddies </ApprovedAndWaiting>
+              {this.props.trip.users_joined.map((item, index) => {
+                return <div key={index}>{item.name}</div>
+              })}
             </div>
             <div>
               <ApprovedAndWaiting>Waiting to join</ApprovedAndWaiting>
+              {this.props.trip.users_requested.map((item, index) => {
+                return (
+                  <div key={index}>
+                    {item.name}
+                    <ApproveSymbol
+                      onClick={() =>
+                        this.props.dispatch(
+                          approveJoin(this.props.trip.id, item._id)
+                        )
+                      }
+                      src="/assets/logo/correct-symbol.svg"
+                      alt=""
+                    />
+                    <RemoveSymbol src="/assets/logo/remove-symbol.svg" alt="" />
+                  </div>
+                )
+              })}
+              <div />
             </div>
           </ApprovedAndWaitingPositin>
         </RequestContent>
       ) : (
-        <ButtonRequestJoin>
+        <ButtonRequestJoin
+          onClick={() => this.props.dispatch(requestJoin(this.props.trip.id))}
+        >
           <b>Request to Join</b>
         </ButtonRequestJoin>
       )
