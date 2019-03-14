@@ -4,7 +4,6 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { getTripDetails } from '../redux/actions/trip-details'
-// import { Redirect } from 'react-router-dom'
 
 const Content = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -110,6 +109,13 @@ class TripDetails extends React.Component {
   }
 
   render() {
+    let currentUserId, tripAuthorId
+
+    if (this.props.user && this.props.trip) {
+      currentUserId = this.props.user._id
+      tripAuthorId = this.props.trip.author._id
+    }
+
     return (
       this.props.trip && (
         <Container>
@@ -189,9 +195,7 @@ class TripDetails extends React.Component {
                   <TripDiscribe>{this.props.trip.description}</TripDiscribe>
                   <ButtonRequest>
                     {this.props.isAuthenticated && (
-                      <ButtonRequestJoin>
-                        <b>Request to Join</b>
-                      </ButtonRequestJoin>
+                      <JoinButton isAuthor={currentUserId === tripAuthorId} />
                     )}
                   </ButtonRequest>
                 </div>
@@ -209,8 +213,18 @@ class TripDetails extends React.Component {
 const mapStateToProps = state => {
   return {
     trip: state.tripDetails.data,
-    isAuthenticated: state.user.isAuthenticated
+    isAuthenticated: state.user.isAuthenticated,
+    user: state.user.data
   }
 }
 
 export default connect(mapStateToProps)(TripDetails)
+
+const JoinButton = props =>
+  props.isAuthor ? (
+    <b>Request List</b>
+  ) : (
+    <ButtonRequestJoin>
+      <b>Request to Join</b>
+    </ButtonRequestJoin>
+  )
