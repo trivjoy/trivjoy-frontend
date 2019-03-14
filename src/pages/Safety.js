@@ -17,14 +17,10 @@ const StyledDiv = styled.div`
   display: flex;
 `
 const InformationColumn = styled.div`
-  font-size: 15px;
-  width: 404px;
-  height: 25px;
-  left: 40px;
-  top: 303px;
-  font-style: normal;
-  font-weight: normal;
-  line-height: normal;
+  width: 400dpx;
+  height: 200px;
+  left: 600px;
+  top: 73px;
 `
 
 const Safety = () => {
@@ -37,14 +33,7 @@ const Safety = () => {
           <p>everything about trivjoy app you can found here</p>
         </InformationColumn>
         <StyledDiv>
-          <img src="/assets/logo/create-trip.png" alt="create trip" />
-          <div>
-            <h3>Create a Trip</h3>
-            <p>
-              Create a trip and wait for someone to join up or find an existing
-              one that you like the most.
-            </p>
-          </div>
+          <img src="/assets/images/safetyimage.png" alt="help logo" />
         </StyledDiv>
       </Content>
       <Footer />
