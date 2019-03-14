@@ -54,7 +54,7 @@ const About_us = () => {
               make it easy for travelers to connect and to travel the world
               together. We believe that traveling is more fun when you have
               someone with whom you can share your travel experience and
-              adventures.
+              adventures!
             </p>
             <p>
               TripGiraffe thrives to create an extensive database of travelers

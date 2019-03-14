@@ -82,7 +82,7 @@ const Help = () => {
               buddy refuses to meet you at a public place, cancel your meet-up
               and re-think further communication. If you feel uncomfortable
               about your new travel buddy, don’t worry about seeming rude and
-              try to find a new one.
+              try to find a new one!
             </p>
           </StyledHelpParagraph>
         </div>
