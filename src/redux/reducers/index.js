@@ -8,6 +8,7 @@ import logoutReducer from './logout'
 import createTripsReducer from './create-trips'
 import tripsReducer from './trips'
 import tripDetailsReducer from './trip-details'
+import requestJoinReducer from './requestJoin'
 
 export default combineReducers({
   // router: connectRouter(history),
@@ -17,5 +18,6 @@ export default combineReducers({
   logout: logoutReducer,
   create_trips: createTripsReducer,
   trips: tripsReducer,
-  tripDetails: tripDetailsReducer
+  tripDetails: tripDetailsReducer,
+  requestJoin: requestJoinReducer
 })

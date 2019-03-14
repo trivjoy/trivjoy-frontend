@@ -111,11 +111,9 @@ class Profile extends React.Component {
     this.props.dispatch(getTrips())
   }
   render() {
-    // const mytrip = this.props.trips.find(
-    //   item => item.author === this.props.user._id
-    // )
+    // const Male = '/assets/logo/man.svg'
+    // const Female = '/assets/logo/'
 
-    // console.log(mytrip)
     return (
       <Container>
         <Header />
