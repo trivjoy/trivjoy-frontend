@@ -102,6 +102,25 @@ const ButtonRequest = styled.div`
   display: flex;
   justify-content: center;
 `
+const RequestContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px auto;
+  width: 100%;
+`
+const ApprovedAndWaiting = styled.b`
+  font-size: 16px;
+  margin: 0px auto;
+`
+const RequestList = styled.b`
+  margin: 0px auto;
+`
+const ApprovedAndWaitingPositin = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+`
 
 class TripDetails extends React.Component {
   componentDidMount() {
@@ -115,6 +134,24 @@ class TripDetails extends React.Component {
       currentUserId = this.props.user._id
       tripAuthorId = this.props.trip.author._id
     }
+    const JoinButton = props =>
+      props.isAuthor ? (
+        <RequestContent>
+          <RequestList>Request List</RequestList>
+          <ApprovedAndWaitingPositin>
+            <div>
+              <ApprovedAndWaiting>Approved Buddies </ApprovedAndWaiting>
+            </div>
+            <div>
+              <ApprovedAndWaiting>Waiting to join</ApprovedAndWaiting>
+            </div>
+          </ApprovedAndWaitingPositin>
+        </RequestContent>
+      ) : (
+        <ButtonRequestJoin>
+          <b>Request to Join</b>
+        </ButtonRequestJoin>
+      )
 
     return (
       this.props.trip && (
@@ -193,12 +230,12 @@ class TripDetails extends React.Component {
                   </DiscribeBottomCards>
                   <DiscribeStyle>Trip Discribe:</DiscribeStyle>
                   <TripDiscribe>{this.props.trip.description}</TripDiscribe>
-                  <ButtonRequest>
-                    {this.props.isAuthenticated && (
-                      <JoinButton isAuthor={currentUserId === tripAuthorId} />
-                    )}
-                  </ButtonRequest>
                 </div>
+                <ButtonRequest>
+                  {this.props.isAuthenticated && (
+                    <JoinButton isAuthor={currentUserId === tripAuthorId} />
+                  )}
+                </ButtonRequest>
               </ContentRight>
             </UserCardDetails>
           </Content>
@@ -219,12 +256,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(TripDetails)
-
-const JoinButton = props =>
-  props.isAuthor ? (
-    <b>Request List</b>
-  ) : (
-    <ButtonRequestJoin>
-      <b>Request to Join</b>
-    </ButtonRequestJoin>
-  )
