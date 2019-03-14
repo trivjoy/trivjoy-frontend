@@ -123,13 +123,7 @@ const ApprovedAndWaitingPositin = styled.div`
   justify-content: space-around;
   flex-direction: row;
 `
-const RemoveSymbol = styled.img`
-  height: 20px;
-  width: 20px;
-  :hover {
-    cursor: pointer;
-  }
-`
+
 const ApproveSymbol = styled.img`
   height: 25px;
   width: 25px;
@@ -137,6 +131,7 @@ const ApproveSymbol = styled.img`
     cursor: pointer;
   }
 `
+
 class TripDetails extends React.Component {
   componentDidMount() {
     this.props.dispatch(getTripDetails(this.props.match.params.id))
@@ -155,9 +150,14 @@ class TripDetails extends React.Component {
           <RequestList>Request List</RequestList>
           <ApprovedAndWaitingPositin>
             <div>
-              <ApprovedAndWaiting>Approved Buddies </ApprovedAndWaiting>
+              <ApprovedAndWaiting>Approved Buddies</ApprovedAndWaiting>
               {this.props.trip.users_joined.map((item, index) => {
-                return <div key={index}>{item.name}</div>
+                return (
+                  <div key={index}>
+                    <b>{item.name}</b>
+                    <div> {item.phone}</div>
+                  </div>
+                )
               })}
             </div>
             <div>
@@ -175,7 +175,6 @@ class TripDetails extends React.Component {
                       src="/assets/logo/correct-symbol.svg"
                       alt=""
                     />
-                    <RemoveSymbol src="/assets/logo/remove-symbol.svg" alt="" />
                   </div>
                 )
               })}
@@ -250,7 +249,7 @@ class TripDetails extends React.Component {
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/purse.svg" alt="" />
                     <DiscribeStyle>
-                      Budget: {this.props.trip.budget}
+                      Budget (IDR): {this.props.trip.budget}
                     </DiscribeStyle>
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
@@ -263,7 +262,7 @@ class TripDetails extends React.Component {
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/success.svg" alt="" />
                     <DiscribeStyle>
-                      Alredy Join: {this.props.trip.users_joined.length}
+                      Already Join: {this.props.trip.users_joined.length}
                     </DiscribeStyle>
                   </DiscribeBottomCards>
                   <DiscribeStyle>Trip Discribe:</DiscribeStyle>
