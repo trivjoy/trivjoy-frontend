@@ -89,7 +89,7 @@ const Footer = () => {
         </CopyrightStyle>
       </FooterLeft>
       <FooterRight>
-        <Link to="/aboutUs">
+        <Link to="/about">
           <b>About Us</b>
         </Link>
         <Link to="/safety">
