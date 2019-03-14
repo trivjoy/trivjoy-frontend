@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { getTrips } from '../redux/actions/trips'
 
 const Content = styled.div`
   flex: 1;
@@ -91,9 +92,13 @@ const Div = styled.div`
   margin: 0 auto;
 `
 
-const DiscribeAboutMe = styled.p`
-  width: 718px;
-  margin: 0 auto;
+const MyCardContent = styled.div``
+
+const MyCard = styled.div`
+  width: 250px;
+  margin: 0px 20px;
+  height: 300px;
+  border: 1px solid black;
   font-size: 14px;
 `
 const AboutMe = styled.b`
@@ -101,71 +106,96 @@ const AboutMe = styled.b`
   margin-bottom: 5px;
 `
 
-const Profile = ({ user }) => {
-  return (
-    <Container>
-      <Header />
-      <Content>
-        <TopContent>
-          <TopLeftContent>
-            <div>
-              <ManLogo src="/assets/logo/man.svg" alt="" />
-            </div>
-            <ChangeImageStyle>Change Images</ChangeImageStyle>
-          </TopLeftContent>
-          <TopRightContent>
-            <HeaderTopContent>
-              <ProfileStyle>Profile</ProfileStyle>
-              <ButtonEdit>
-                <b>Edit</b>
-              </ButtonEdit>
-            </HeaderTopContent>
+class Profile extends React.Component {
+  componentDidMount = async () => {
+    this.props.dispatch(getTrips())
+  }
+  render() {
+    // const mytrip = this.props.trips.find(
+    //   item => item.author === this.props.user._id
+    // )
 
-            <div>
-              <ParagraphStyle>
-                <b>FullName: {user.name}</b>
-              </ParagraphStyle>
-              <ParagraphStyle>
-                <b>Email: {user.email}</b>
-              </ParagraphStyle>
-              <ParagraphStyle>
-                <b>Gender: {user.gender}</b>
-              </ParagraphStyle>
-              <ParagraphStyle>
-                <b>Age: {user.age}</b>
-              </ParagraphStyle>
-              <ParagraphStyle>
-                <b>Telephone Number: {user.phone}</b>
-              </ParagraphStyle>
-              <ParagraphStyle>
-                <b>City: {user.city}</b>
-              </ParagraphStyle>
-              <ParagraphStyle>
-                <b>Address: {user.address}</b>
-              </ParagraphStyle>
-            </div>
-          </TopRightContent>
-        </TopContent>
-        <BottomContent>
-          <Div>
-            <AboutMe>About Me</AboutMe>
-          </Div>
-          <Div>
-            <DiscribeAboutMe>
-              Hallo, My Name is TrivJoy. Let’s trip with me, Buddy!
-            </DiscribeAboutMe>
-          </Div>
-        </BottomContent>
-      </Content>
-      <Footer />
-    </Container>
-  )
+    // console.log(mytrip)
+    return (
+      <Container>
+        <Header />
+        <Content>
+          <TopContent>
+            <TopLeftContent>
+              <div>
+                <ManLogo src="/assets/logo/man.svg" alt="" />
+              </div>
+              <ChangeImageStyle>Change Images</ChangeImageStyle>
+            </TopLeftContent>
+            <TopRightContent>
+              <HeaderTopContent>
+                <ProfileStyle>Profile</ProfileStyle>
+                <ButtonEdit>
+                  <b>Edit</b>
+                </ButtonEdit>
+              </HeaderTopContent>
+
+              <div>
+                <ParagraphStyle>
+                  <b>FullName: {this.props.user.name}</b>
+                </ParagraphStyle>
+                <ParagraphStyle>
+                  <b>Email: {this.props.user.email}</b>
+                </ParagraphStyle>
+                <ParagraphStyle>
+                  <b>Gender: {this.props.user.gender}</b>
+                </ParagraphStyle>
+                <ParagraphStyle>
+                  <b>Age: {this.props.user.age}</b>
+                </ParagraphStyle>
+                <ParagraphStyle>
+                  <b>Telephone Number: {this.props.user.phone}</b>
+                </ParagraphStyle>
+                <ParagraphStyle>
+                  <b>City: {this.props.user.city}</b>
+                </ParagraphStyle>
+                <ParagraphStyle>
+                  <b>Address: {this.props.user.address}</b>
+                </ParagraphStyle>
+              </div>
+            </TopRightContent>
+          </TopContent>
+          <BottomContent>
+            <Div>
+              <AboutMe>My Trip</AboutMe>
+            </Div>
+
+            <MyCardContent>
+              <MyCard>
+                <div>
+                  <b> Title </b>
+                </div>
+                <div>
+                  <b>Tour Destination</b>
+                </div>
+                <div>
+                  <b>DateFrom - DateTo</b>
+                </div>
+                <div>
+                  <b>Request Join: </b>
+                </div>
+                <div>
+                  <b>Alredy Join:</b>
+                </div>
+              </MyCard>
+            </MyCardContent>
+          </BottomContent>
+        </Content>
+        <Footer />
+      </Container>
+    )
+  }
 }
 
 const mapStateToProps = state => {
   return {
-    // might contain name, email, token, isAuthenticated
-    user: state.user.data
+    user: state.user.data,
+    trips: state.trips.data
   }
 }
 
