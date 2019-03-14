@@ -143,7 +143,7 @@ class Trips extends React.Component {
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/success.svg" alt="" />
-                    <b>Already Join: 0</b>
+                    <b>Already Join: {item.users_joined.length}</b>
                   </DiscribeBottomCards>
                   <ReadMoreStyle>
                     <b>Read More</b>
