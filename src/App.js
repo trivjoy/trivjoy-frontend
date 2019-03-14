@@ -8,7 +8,7 @@ import Register from './pages/Register'
 import Profile from './pages/Profile'
 import Post from './pages/Post'
 import Trips from './pages/Trips'
-import About from './pages/About'
+import AboutUs from './pages/About'
 import Safety from './pages/Safety'
 import Help from './pages/Help'
 import CreateTrip from './pages/CreateTrip'
@@ -34,7 +34,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
           <Route path="/post" component={Post} />
-          <Route path="/about" component={About} />
+          <Route path="/about" component={AboutUs} />
           <Route path="/safety" component={Safety} />
           <Route path="/help" component={Help} />
           <Route path="/create" component={CreateTrip} />
