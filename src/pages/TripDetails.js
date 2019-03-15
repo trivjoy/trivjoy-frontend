@@ -315,8 +315,8 @@ class TripDetails extends React.Component {
                   <DescriptionBottom>
                     <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
                     <Description>
-                      About {this.props.trip.peopleMin} -{' '}
-                      {this.props.trip.peopleMax} can join this trip
+                      About {this.props.trip.peopleMin}-
+                      {this.props.trip.peopleMax} people can join
                     </Description>
                   </DescriptionBottom>
                   {this.props.trip.users_joined.length > 0 && (
