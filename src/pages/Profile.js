@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { getTrips } from '../redux/actions/trips'
+import { Link } from 'react-router-dom'
 
 const Content = styled.div`
   flex: 1;
@@ -129,31 +130,35 @@ class Profile extends React.Component {
               <HeaderTopContent>
                 <ProfileStyle>Profile</ProfileStyle>
                 <ButtonEdit>
-                  <b>Edit</b>
+                  <Link to="/edit_profile">
+                    <b>Edit</b>
+                  </Link>
                 </ButtonEdit>
               </HeaderTopContent>
 
               <div>
                 <ParagraphStyle>
-                  <b>FullName: {this.props.user.name}</b>
+                  <b>FullName: {this.props.user && this.props.user.name}</b>
                 </ParagraphStyle>
                 <ParagraphStyle>
-                  <b>Email: {this.props.user.email}</b>
+                  <b>Email: {this.props.user && this.props.user.email}</b>
                 </ParagraphStyle>
                 <ParagraphStyle>
-                  <b>Gender: {this.props.user.gender}</b>
+                  <b>Gender: {this.props.user && this.props.user.gender}</b>
                 </ParagraphStyle>
                 <ParagraphStyle>
-                  <b>Age: {this.props.user.age}</b>
+                  <b>Age: {this.props.user && this.props.user.age}</b>
                 </ParagraphStyle>
                 <ParagraphStyle>
-                  <b>Telephone Number: {this.props.user.phone}</b>
+                  <b>
+                    Telephone Number: {this.props.user && this.props.user.phone}
+                  </b>
                 </ParagraphStyle>
                 <ParagraphStyle>
-                  <b>City: {this.props.user.city}</b>
+                  <b>City: {this.props.user && this.props.user.city}</b>
                 </ParagraphStyle>
                 <ParagraphStyle>
-                  <b>Address: {this.props.user.address}</b>
+                  <b>Address: {this.props.user && this.props.user.address}</b>
                 </ParagraphStyle>
               </div>
             </TopRightContent>

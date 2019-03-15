@@ -48,9 +48,11 @@ const UploadButtonStyled = styled.button`
 const UploadLabel = styled.b``
 
 const TextAreaStyle = styled.textarea`
-  width: 500px;
+  width: 600px;
   margin-bottom: 15px;
   margin-top: 8px;
+  border: 2px solid #333333;
+  border-radius: 5px;
 `
 const TitleForm = styled.div`
   text-align: center;
@@ -63,20 +65,62 @@ const LabelInput = styled.b`
   height: 20px;
 `
 const LabelTo = styled.b`
-  margin-left: 5px;
+  margin-left: 8px;
   margin-right: 5px;
 `
 const TripTitleLabel = styled.input`
-  width: 421px;
+  margin-top: 5px;
+  margin-left: 60px;
+  padding-left: 10px;
+  height: 30px;
+  border-radius: 5px;
+  width: 450px;
+  border: 2px solid #333333;
 `
 const TourDetinationLabel = styled.input`
-  width: 365px;
+  margin-top: 5px;
+  margin-left: 5px;
+  padding-left: 10px;
+  height: 30px;
+  border-radius: 5px;
+  width: 450px;
+  border: 2px solid #333333;
 `
 const DateLabel = styled.input`
-  width: 211px;
+  margin-top: 5px;
+  margin-left: 90px;
+  padding-left: 10px;
+  height: 30px;
+  border-radius: 5px;
+  width: 200px;
+  border: 2px solid #333333;
+`
+const DateLabelTo = styled.input`
+  margin-top: 5px;
+  margin-left: 9px;
+  padding-left: 10px;
+  height: 30px;
+  border-radius: 5px;
+  width: 200px;
+  border: 2px solid #333333;
+`
+const LabelJoin = styled.input`
+  margin-top: 5px;
+  margin-left: 9px;
+  padding-left: 10px;
+  height: 30px;
+  border-radius: 5px;
+  width: 200px;
+  border: 2px solid #333333;
 `
 const BudgetLabel = styled.input`
-  width: 395px;
+  margin-top: 5px;
+  margin-left: 32px;
+  padding-left: 10px;
+  height: 30px;
+  border-radius: 5px;
+  width: 453px;
+  border: 2px solid #333333;
 `
 const MarginInput = styled.div`
   margin-bottom: 8px;
@@ -102,16 +146,17 @@ class CreateTrip extends React.Component {
     super()
     this.state = {
       title: '',
-      tourDestination: 'Loc A, Loc B, Loc C',
+      tourDestination: '',
       dateFrom: '',
       dateTo: '',
-      budget: '700000',
-      image: '/assets/images/first-section-1.jpg',
+      budget: '',
+      image: '',
       description:
         'I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together.  I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together. I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together. I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together. ',
-      peopleMin: '2',
-      peopleMax: '10'
+      peopleMin: '',
+      peopleMax: ''
     }
+    console.log(this.state)
   }
 
   clearInputText = () => {
@@ -191,7 +236,7 @@ class CreateTrip extends React.Component {
                 required
               />
               <LabelTo>To</LabelTo>
-              <DateLabel
+              <DateLabelTo
                 type="date"
                 name="dateTo"
                 onChange={event => {
@@ -222,9 +267,9 @@ class CreateTrip extends React.Component {
             </UploadStyle>
             <MarginInput>
               <LabelInput>People Can Join:</LabelInput>
-              <input
+              <LabelJoin
                 type="number"
-                name="quantity"
+                name="peopleMin"
                 min="1"
                 max="100"
                 placeholder="Min"
@@ -232,9 +277,10 @@ class CreateTrip extends React.Component {
                 value={this.state.peopleMin}
                 required
               />
-              <input
+              <LabelTo>To</LabelTo>
+              <LabelJoin
                 type="number"
-                name="quantity"
+                name="peopleMax"
                 min="1"
                 max="100"
                 placeholder="Max"
