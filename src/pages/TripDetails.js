@@ -246,7 +246,7 @@ class TripDetails extends React.Component {
 
           <Content>
             <TitleStyled>{this.props.trip.title}</TitleStyled>
-            <ImageCards src="/assets/images/first-section-1.jpg" alt="" />
+            <ImageCards src={this.props.trip.image} alt="" />
 
             <UserCardDetails>
               <ContentLeft>
@@ -298,7 +298,12 @@ class TripDetails extends React.Component {
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/purse.svg" alt="" />
                     <DiscribeStyle>
-                      Budget (IDR): {this.props.trip.budget}
+                      Budget (IDR):
+                      {new Intl.NumberFormat('en-IND', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        maximumSignificantDigits: 3
+                      }).format(this.props.trip.budget)}
                     </DiscribeStyle>
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
