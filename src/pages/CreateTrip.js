@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactFilestack from 'filestack-react'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 // import IntlCurrencyInput from 'react-intl-currency-input'
 import styled from 'styled-components'
 import { createTrips } from '../redux/actions/create-trips'
@@ -160,8 +160,7 @@ class CreateTrip extends React.Component {
       dateTo: '',
       budget: '',
       image: '',
-      description:
-        'I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together.  I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together. I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together. I just want going to mount bromo and enjoy the vacation, so i want to invite you to join my journey and create a moment together. ',
+      description: '',
       peopleMin: '',
       peopleMax: ''
     }
@@ -204,20 +203,18 @@ class CreateTrip extends React.Component {
     })
   }
 
+  handleSubmit = event => {
+    event.preventDefault()
+    this.onSubmit()
+    this.props.history.push('/trips')
+  }
+
   render() {
-    if (this.props.create_trips.success) {
-      return <Redirect to="/trips" />
-    }
     return (
       <Container>
         <Header />
         <Content>
-          <form
-            onSubmit={event => {
-              event.preventDefault()
-              this.onSubmit()
-            }}
-          >
+          <form onSubmit={this.handleSubmit}>
             <TitleForm>
               <h2>Post Your Trip!</h2>
             </TitleForm>
@@ -351,7 +348,7 @@ class CreateTrip extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    create_trips: state.create_trips
+    create_trips: state.create_trips.success
   }
 }
 
