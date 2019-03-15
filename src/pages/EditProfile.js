@@ -98,7 +98,6 @@ class Profile extends React.Component {
     super()
     this.state = {
       name: '',
-      email: '',
       phone: '',
       age: '',
       gender: '',
@@ -116,7 +115,6 @@ class Profile extends React.Component {
   clearInputText = () => {
     this.setState({
       name: '',
-      email: '',
       phone: '',
       age: '',
       gender: '',
@@ -175,18 +173,6 @@ class Profile extends React.Component {
                         type="text"
                         placeholder="Name"
                         value={this.state.name}
-                      />
-                    </b>
-                  </ParagraphStyle>
-                  <ParagraphStyle>
-                    <b>
-                      Email:{' '}
-                      <InputName
-                        onChange={this.handleChange}
-                        name="email"
-                        type="text"
-                        placeholder="Email"
-                        value={this.state.email}
                       />
                     </b>
                   </ParagraphStyle>
