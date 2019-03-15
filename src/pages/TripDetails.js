@@ -42,15 +42,15 @@ const LogoStyle = styled.img`
   width: 15px;
   margin: 5px 5px 5px 0px;
 `
-const DiscribeBottomCards = styled.div`
+const DescriptionTop = styled.div`
+  margin: 3px 0px 15px 10px;
+`
+const DescriptionBottom = styled.div`
   font-size: 15px;
   display: flex;
   justify-content: left;
   align-items: center;
   margin: 5px 0px 5px 10px;
-`
-const DiscribeTopCards = styled.div`
-  margin: 3px 0px 15px 10px;
 `
 const ImageCards = styled.img`
   display: flex;
@@ -76,7 +76,7 @@ const UserCardDetails = styled.div`
   justify-content: left;
   margin-top: 20px;
 `
-const DiscribeStyle = styled.b`
+const Description = styled.b`
   margin-left: 10px;
   font-size: 18px;
 `
@@ -254,7 +254,7 @@ class TripDetails extends React.Component {
               </ContentLeft>
               <ContentRight>
                 <div>
-                  <DiscribeTopCards>
+                  <DescriptionTop>
                     <b>
                       {this.props.trip.author.name},
                       <b> {this.props.trip.author.age}</b>
@@ -269,16 +269,16 @@ class TripDetails extends React.Component {
                       </LocationStyle>
                     </div>
                     <b>{this.props.trip.author.gender}</b>
-                  </DiscribeTopCards>
-                  <DiscribeBottomCards>
+                  </DescriptionTop>
+                  <DescriptionBottom>
                     <LogoStyle src="/assets/logo/hammock.svg" alt="" />
-                    <DiscribeStyle>
+                    <Description>
                       Tour Destination: {this.props.trip.tourDestination}
-                    </DiscribeStyle>
-                  </DiscribeBottomCards>
-                  <DiscribeBottomCards>
+                    </Description>
+                  </DescriptionBottom>
+                  <DescriptionBottom>
                     <LogoStyle src="/assets/logo/calendar.svg" alt="" />
-                    <DiscribeStyle>
+                    <Description>
                       Date:{' '}
                       {new Intl.DateTimeFormat('id-ID', {
                         weekday: 'long',
@@ -293,33 +293,33 @@ class TripDetails extends React.Component {
                         month: 'long',
                         day: 'numeric'
                       }).format(new Date(this.props.trip.dateTo))}
-                    </DiscribeStyle>
-                  </DiscribeBottomCards>
-                  <DiscribeBottomCards>
+                    </Description>
+                  </DescriptionBottom>
+                  <DescriptionBottom>
                     <LogoStyle src="/assets/logo/purse.svg" alt="" />
-                    <DiscribeStyle>
+                    <Description>
                       Budget (IDR):
                       {new Intl.NumberFormat('en-IND', {
                         style: 'currency',
                         currency: 'IDR',
                         maximumSignificantDigits: 3
                       }).format(this.props.trip.budget)}
-                    </DiscribeStyle>
-                  </DiscribeBottomCards>
-                  <DiscribeBottomCards>
+                    </Description>
+                  </DescriptionBottom>
+                  <DescriptionBottom>
                     <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
-                    <DiscribeStyle>
+                    <Description>
                       People Can Join: {this.props.trip.peopleMin} -{' '}
                       {this.props.trip.peopleMax}
-                    </DiscribeStyle>
-                  </DiscribeBottomCards>
-                  <DiscribeBottomCards>
+                    </Description>
+                  </DescriptionBottom>
+                  <DescriptionBottom>
                     <LogoStyle src="/assets/logo/success.svg" alt="" />
-                    <DiscribeStyle>
+                    <Description>
                       Already Join: {this.props.trip.users_joined.length}
-                    </DiscribeStyle>
-                  </DiscribeBottomCards>
-                  <DiscribeStyle>Trip Discribe:</DiscribeStyle>
+                    </Description>
+                  </DescriptionBottom>
+                  <Description>Trip Discribe:</Description>
                   <TripDiscribe>{this.props.trip.description}</TripDiscribe>
                 </div>
                 <ButtonRequest>
@@ -330,7 +330,6 @@ class TripDetails extends React.Component {
               </ContentRight>
             </UserCardDetails>
           </Content>
-
           <Footer />
         </Container>
       )
