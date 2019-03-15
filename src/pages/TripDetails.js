@@ -42,15 +42,15 @@ const LogoStyle = styled.img`
   width: 15px;
   margin: 5px 5px 5px 0px;
 `
-const DescriptionTop = styled.div`
-  margin: 3px 0px 15px 10px;
-`
 const DescriptionBottom = styled.div`
   font-size: 15px;
   display: flex;
   justify-content: left;
   align-items: center;
   margin: 5px 0px 5px 10px;
+`
+const DescriptionTop = styled.div`
+  margin: 3px 0px 15px 10px;
 `
 const ImageCards = styled.img`
   display: flex;
@@ -93,7 +93,7 @@ const ButtonRequestJoin = styled.button`
     background-color: #68bffd;
   }
 `
-const TripDiscribe = styled.p`
+const TripDescription = styled.p`
   font-size: 14px;
   margin-left: 10px;
 `
@@ -104,20 +104,13 @@ const ButtonRequest = styled.div`
   display: flex;
   justify-content: center;
 `
-const RequestContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0px auto;
-  width: 100%;
-`
+
 const ApprovedAndWaiting = styled.b`
-  font-size: 16px;
-  margin: 0px auto;
+  font-size: 18px;
 `
 const RequestList = styled.b`
   margin: 0px auto;
-  font-size: 16px;
+  font-size: 20px;
 `
 const ApprovedAndWaitingPosition = styled.div`
   display: flex;
@@ -136,18 +129,53 @@ const UserApprove = styled.div`
   display: flex;
   text-align: center;
   flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `
 const UserApproved = styled.b`
-  font-size: 18px;
+  font-size: 14px;
 `
 const UserPhone = styled.p`
-  font-size: 18px;
+  font-size: 14px;
   margin: 0 auto;
+`
+const ApproveContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
+  width: 500px;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  background-color: #68bffd;
+  color: white;
+`
+const ApproveStyle = styled.div`
+  text-align: center;
+  margin-top: 10px;
+`
+const ApproveDetails = styled.div`
+  font-size: 16px;
+  margin-bottom: 10px;
+`
+const WaitingApproved = styled.b`
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 
 class TripDetails extends React.Component {
+  state = {
+    buttonClicked: false
+  }
+
   componentDidMount() {
     this.props.dispatch(getTripDetails(this.props.match.params.id))
+  }
+
+  handleRequestJoinClicked = e => {
+    this.setState({ buttonClicked: true })
+    this.props.dispatch(requestJoin(this.props.trip.id))
   }
 
   render() {
@@ -175,7 +203,7 @@ class TripDetails extends React.Component {
 
     const JoinButton = props =>
       props.isAuthor ? (
-        <RequestContent>
+        <ApproveContent>
           <RequestList>Request List</RequestList>
           <ApprovedAndWaitingPosition>
             <div>
@@ -210,31 +238,29 @@ class TripDetails extends React.Component {
               <div />
             </div>
           </ApprovedAndWaitingPosition>
-        </RequestContent>
+        </ApproveContent>
       ) : (
         <div>
-          {isRequest ? (
-            <b>Waiting approved...</b>
+          {this.state.buttonClicked || isRequest ? (
+            <ApproveContent>
+              <WaitingApproved>Waiting approved...</WaitingApproved>
+            </ApproveContent>
           ) : !isApproved ? (
-            <ButtonRequestJoin
-              onClick={() =>
-                this.props.dispatch(requestJoin(this.props.trip.id))
-              }
-            >
+            <ButtonRequestJoin onClick={this.handleRequestJoinClicked}>
               <b>Request to Join</b>
             </ButtonRequestJoin>
           ) : (
-            <div>
-              <div>
+            <ApproveContent>
+              <ApproveStyle>
                 <b>Approved</b>
-              </div>
-              <div>
-                <b>{tripAuthorName}</b>
-              </div>
-              <div>
-                <b> {tripAuthorPhone}</b>
-              </div>
-            </div>
+              </ApproveStyle>
+
+              <ApproveDetails>
+                <b>
+                  You can contact: {tripAuthorName} ( {tripAuthorPhone} )
+                </b>
+              </ApproveDetails>
+            </ApproveContent>
           )}
         </div>
       )
@@ -328,7 +354,9 @@ class TripDetails extends React.Component {
                       </Description>
                     </DescriptionBottom>
                   )}
-                  <TripDiscribe>{this.props.trip.description}</TripDiscribe>
+                  <TripDescription>
+                    {this.props.trip.description}
+                  </TripDescription>
                 </div>
                 <ButtonRequest>
                   {this.props.isAuthenticated && (
@@ -338,6 +366,7 @@ class TripDetails extends React.Component {
               </ContentRight>
             </UserCardDetails>
           </Content>
+
           <Footer />
         </Container>
       )
