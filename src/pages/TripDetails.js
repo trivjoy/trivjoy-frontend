@@ -42,15 +42,15 @@ const LogoStyle = styled.img`
   width: 15px;
   margin: 5px 5px 5px 0px;
 `
-const DescriptionTop = styled.div`
-  margin: 3px 0px 15px 10px;
-`
-const DescriptionBottom = styled.div`
+const DescriptionBottomCards = styled.div`
   font-size: 15px;
   display: flex;
   justify-content: left;
   align-items: center;
   margin: 5px 0px 5px 10px;
+`
+const DescriptionTopCards = styled.div`
+  margin: 3px 0px 15px 10px;
 `
 const ImageCards = styled.img`
   display: flex;
@@ -93,7 +93,7 @@ const ButtonRequestJoin = styled.button`
     background-color: #68bffd;
   }
 `
-const TripDiscribe = styled.p`
+const TripDescription = styled.p`
   font-size: 14px;
   margin-left: 10px;
 `
@@ -143,6 +143,16 @@ const UserApproved = styled.b`
 const UserPhone = styled.p`
   font-size: 18px;
   margin: 0 auto;
+`
+const ApproveContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+const ApproveStyle = styled.div`
+  text-align: center;
+`
+const ApproveDetails = styled.div`
+  font-size: 16px;
 `
 
 class TripDetails extends React.Component {
@@ -224,17 +234,17 @@ class TripDetails extends React.Component {
               <b>Request to Join</b>
             </ButtonRequestJoin>
           ) : (
-            <div>
-              <div>
+            <ApproveContent>
+              <ApproveStyle>
                 <b>Approved</b>
-              </div>
-              <div>
-                <b>{tripAuthorName}</b>
-              </div>
-              <div>
-                <b> {tripAuthorPhone}</b>
-              </div>
-            </div>
+              </ApproveStyle>
+
+              <ApproveDetails>
+                <b>
+                  You can contact: {tripAuthorName} ( {tripAuthorPhone} )
+                </b>
+              </ApproveDetails>
+            </ApproveContent>
           )}
         </div>
       )
@@ -338,6 +348,7 @@ class TripDetails extends React.Component {
               </ContentRight>
             </UserCardDetails>
           </Content>
+
           <Footer />
         </Container>
       )
