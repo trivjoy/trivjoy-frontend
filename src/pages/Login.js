@@ -122,7 +122,7 @@ class Login extends React.Component {
   }
 
   render() {
-    // console.log(this.props.isAuthenticated)
+    console.log(this.props.isAuthenticated)
 
     console.log(this.props.error)
     if (this.props.isAuthenticated) {
