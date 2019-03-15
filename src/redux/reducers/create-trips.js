@@ -1,7 +1,8 @@
 const initialState = {
   latestResponse: null,
   latestError: null,
-  isLoading: false
+  isLoading: false,
+  succes: false
 }
 
 const createTripsReducer = (state = initialState, action) => {
@@ -18,7 +19,8 @@ const createTripsReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        latestResponse: action.payload.response
+        latestResponse: action.payload.response,
+        succes: true
       }
     }
 
