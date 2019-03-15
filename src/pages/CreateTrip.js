@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactFilestack from 'filestack-react'
 import styled from 'styled-components'
 import { createTrips } from '../redux/actions/create-trips'
 import { connect } from 'react-redux'
@@ -140,6 +141,12 @@ const ButtonCreatePost = styled.input`
     background-color: #68bffd;
   }
 `
+const filestackApiKey = process.env.REACT_APP_FILESTACK_API_KEY || false
+
+const filestackOptions = {
+  accept: 'image/*',
+  maxFiles: 5
+}
 
 class CreateTrip extends React.Component {
   constructor() {
@@ -156,7 +163,6 @@ class CreateTrip extends React.Component {
       peopleMin: '',
       peopleMax: ''
     }
-    console.log(this.state)
   }
 
   clearInputText = () => {
@@ -173,7 +179,18 @@ class CreateTrip extends React.Component {
     })
   }
 
+  onSuccess = response => {
+    const files = response.filesUploaded.map(item => {
+      return item.url
+    })
+
+    this.setState({
+      image: files
+    })
+  }
   onSubmit = async () => {
+    console.log(this.state)
+
     this.props.dispatch(createTrips(this.state))
 
     this.clearInputText()
@@ -262,7 +279,20 @@ class CreateTrip extends React.Component {
             <UploadStyle>
               <UploadLabel>Upload Travel Destination Images</UploadLabel>
               <MarginInput>
-                <UploadButtonStyled>Pick Image</UploadButtonStyled>
+                {filestackApiKey && (
+                  <ReactFilestack
+                    apikey={filestackApiKey} // preconfigured
+                    options={filestackOptions} // preconfigured
+                    onSuccess={this.onSuccess} // preconfigured
+                    onError={this.onError} // preconfigured
+                    preload={true}
+                    render={({ onPick }) => (
+                      <UploadButtonStyled onClick={onPick}>
+                        Pick Image
+                      </UploadButtonStyled>
+                    )}
+                  />
+                )}
               </MarginInput>
             </UploadStyle>
             <MarginInput>
