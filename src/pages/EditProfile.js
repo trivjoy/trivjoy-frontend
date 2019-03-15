@@ -4,7 +4,6 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { editProfile } from '../redux/actions/editProfile'
-import { Link } from 'react-router-dom'
 
 const Content = styled.div`
   flex: 1;
@@ -98,16 +97,20 @@ class Profile extends React.Component {
   constructor() {
     super()
     this.state = {
-      name: `${this.props.user.name}`,
-      email: `${this.props.user.email}`,
-      phone: `${this.props.user.phone}`,
-      age: `${this.props.user.age}`,
-      gender: `${this.props.user.gender}`,
-      address: `${this.props.user.address}`,
-      city: `${this.props.user.city}`,
-      country: `${this.props.user.country}`,
+      name: '',
+      email: '',
+      phone: '',
+      age: '',
+      gender: '',
+      address: '',
+      city: '',
+      country: '',
       isSubmitted: false
     }
+  }
+
+  componentDidMount() {
+    this.setState({ ...this.props.user })
   }
 
   clearInputText = () => {
@@ -124,14 +127,15 @@ class Profile extends React.Component {
     })
   }
 
-  onSubmit = async () => {
+  onSubmit = async e => {
+    e.preventDefault()
     const { isSubmitted, ...data } = this.state
 
-    const result = await this.props.dispatch(editProfile(data))
-    console.log(result)
+    await this.props.dispatch(editProfile(this.props.user.id, data))
 
     if (!this.props.error) {
       this.clearInputText()
+      this.props.history.push('/profile')
     }
   }
 
@@ -154,16 +158,13 @@ class Profile extends React.Component {
               <ChangeImageStyle>Change Images</ChangeImageStyle>
             </TopLeftContent>
             <TopRightContent>
-              <HeaderTopContent>
-                <ProfileStyle>Profile</ProfileStyle>
-                <ButtonEdit>
-                  <Link to="/profile">
-                    <b>Update</b>
-                  </Link>
-                </ButtonEdit>
-              </HeaderTopContent>
-
               <form onSubmit={this.onSubmit}>
+                <HeaderTopContent>
+                  <ProfileStyle>Profile</ProfileStyle>
+                  <ButtonEdit type="submit">
+                    <b>Update</b>
+                  </ButtonEdit>
+                </HeaderTopContent>
                 <div>
                   <ParagraphStyle>
                     <b>
@@ -172,7 +173,7 @@ class Profile extends React.Component {
                         onChange={this.handleChange}
                         name="name"
                         type="text"
-                        placeholder={this.props.user.name}
+                        placeholder="Name"
                         value={this.state.name}
                       />
                     </b>
@@ -184,7 +185,7 @@ class Profile extends React.Component {
                         onChange={this.handleChange}
                         name="email"
                         type="text"
-                        placeholder={this.props.user.email}
+                        placeholder="Email"
                         value={this.state.email}
                       />
                     </b>
@@ -196,8 +197,8 @@ class Profile extends React.Component {
                         onChange={this.handleChange}
                         name="gender"
                         type="text"
+                        placeholder="Gender"
                         value={this.state.gender}
-                        placeholder={this.props.user.gender}
                       />
                     </b>
                   </ParagraphStyle>
@@ -208,7 +209,7 @@ class Profile extends React.Component {
                         onChange={this.handleChange}
                         name="age"
                         type="text"
-                        placeholder={this.props.user.age}
+                        placeholder="Age"
                         value={this.state.age}
                       />
                     </b>
@@ -220,7 +221,7 @@ class Profile extends React.Component {
                         onChange={this.handleChange}
                         name="phone"
                         type="text"
-                        placeholder={this.props.user.phone}
+                        placeholder="Phone"
                         value={this.state.phone}
                       />
                     </b>
@@ -232,7 +233,7 @@ class Profile extends React.Component {
                         type="text"
                         onChange={this.handleChange}
                         name="city"
-                        placeholder={this.props.user.city}
+                        placeholder="City"
                         value={this.state.city}
                       />
                     </b>
@@ -244,7 +245,7 @@ class Profile extends React.Component {
                         type="text"
                         onChange={this.handleChange}
                         name="address"
-                        placeholder={this.props.user.address}
+                        placeholder="Address"
                         value={this.state.address}
                       />
                     </b>
