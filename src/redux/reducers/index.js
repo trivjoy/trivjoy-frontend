@@ -9,6 +9,7 @@ import createTripsReducer from './create-trips'
 import tripsReducer from './trips'
 import tripDetailsReducer from './trip-details'
 import requestJoinReducer from './requestJoin'
+import editProfileReducer from './editProfile'
 
 export default combineReducers({
   // router: connectRouter(history),
@@ -19,5 +20,6 @@ export default combineReducers({
   create_trips: createTripsReducer,
   trips: tripsReducer,
   tripDetails: tripDetailsReducer,
-  requestJoin: requestJoinReducer
+  requestJoin: requestJoinReducer,
+  editProfile: editProfileReducer
 })

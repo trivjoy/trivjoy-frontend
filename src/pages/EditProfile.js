@@ -3,8 +3,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { getTrips } from '../redux/actions/trips'
-import { Link } from 'react-router-dom'
+import { editProfile } from '../redux/actions/editProfile'
 
 const Content = styled.div`
   flex: 1;
@@ -95,31 +94,58 @@ const InputName = styled.input`
 `
 
 class Profile extends React.Component {
-  //   constructor(props) {
-  //     this.state = {
-  //       address: props.user.address
-  //     }
-  //   }
-  state = {
-    address: ''
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props.user !== prevProps.user) {
-      this.setState({
-        address: this.props.user.address
-      })
+  constructor() {
+    super()
+    this.state = {
+      name: '',
+      email: '',
+      phone: '',
+      age: '',
+      gender: '',
+      address: '',
+      city: '',
+      country: '',
+      isSubmitted: false
     }
   }
 
-  componentDidMount = async () => {
-    this.props.dispatch(getTrips())
+  componentDidMount() {
+    this.setState({ ...this.props.user })
   }
-  render() {
-    // const mytrip = this.props.trips.find(
-    //   item => item.author === this.props.user._id
-    // )
 
-    // console.log(mytrip)
+  clearInputText = () => {
+    this.setState({
+      name: '',
+      email: '',
+      phone: '',
+      age: '',
+      gender: '',
+      address: '',
+      city: '',
+      country: '',
+      isSubmitted: true
+    })
+  }
+
+  onSubmit = async e => {
+    e.preventDefault()
+    const { isSubmitted, ...data } = this.state
+
+    await this.props.dispatch(editProfile(this.props.user.id, data))
+
+    if (!this.props.error) {
+      this.clearInputText()
+      this.props.history.push('/profile')
+    }
+  }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  render() {
     return (
       <Container>
         <Header />
@@ -132,85 +158,100 @@ class Profile extends React.Component {
               <ChangeImageStyle>Change Images</ChangeImageStyle>
             </TopLeftContent>
             <TopRightContent>
-              <HeaderTopContent>
-                <ProfileStyle>Profile</ProfileStyle>
-                <ButtonEdit>
-                  <Link to="/profile">
+              <form onSubmit={this.onSubmit}>
+                <HeaderTopContent>
+                  <ProfileStyle>Profile</ProfileStyle>
+                  <ButtonEdit type="submit">
                     <b>Update</b>
-                  </Link>
-                </ButtonEdit>
-              </HeaderTopContent>
-
-              <div>
-                <ParagraphStyle>
-                  <b>
-                    FullName:{' '}
-                    <InputName
-                      type="text"
-                      value={this.props.user && this.props.user.name}
-                    />
-                  </b>
-                </ParagraphStyle>
-                <ParagraphStyle>
-                  <b>
-                    Email:{' '}
-                    <InputName
-                      type="text"
-                      value={this.props.user && this.props.user.email}
-                    />
-                  </b>
-                </ParagraphStyle>
-                <ParagraphStyle>
-                  <b>
-                    Gender:{' '}
-                    <InputName
-                      type="text"
-                      value={this.props.user && this.props.user.gender}
-                    />
-                  </b>
-                </ParagraphStyle>
-                <ParagraphStyle>
-                  <b>
-                    Age:{' '}
-                    <InputName
-                      type="text"
-                      value={this.props.user && this.props.user.age}
-                    />
-                  </b>
-                </ParagraphStyle>
-                <ParagraphStyle>
-                  <b>
-                    Telephone Number:{' '}
-                    <InputName
-                      type="text"
-                      value={this.props.user && this.props.user.phone}
-                    />
-                  </b>
-                </ParagraphStyle>
-                <ParagraphStyle>
-                  <b>
-                    City:{' '}
-                    <InputName
-                      type="text"
-                      value={this.props.user && this.props.user.city}
-                    />
-                  </b>
-                </ParagraphStyle>
-                <ParagraphStyle>
-                  <b>
-                    Address:{' '}
-                    <InputName
-                      type="text"
-                      onChange={event => {
-                        this.setState({
-                          address: event.target.value
-                        })
-                      }}
-                      value={this.state.address}
-                    />
-                  </b>
-                </ParagraphStyle>
-              </div>
+                  </ButtonEdit>
+                </HeaderTopContent>
+                <div>
+                  <ParagraphStyle>
+                    <b>
+                      FullName:{' '}
+                      <InputName
+                        onChange={this.handleChange}
+                        name="name"
+                        type="text"
+                        placeholder="Name"
+                        value={this.state.name}
+                      />
+                    </b>
+                  </ParagraphStyle>
+                  <ParagraphStyle>
+                    <b>
+                      Email:{' '}
+                      <InputName
+                        onChange={this.handleChange}
+                        name="email"
+                        type="text"
+                        placeholder="Email"
+                        value={this.state.email}
+                      />
+                    </b>
+                  </ParagraphStyle>
+                  <ParagraphStyle>
+                    <b>
+                      Gender:{' '}
+                      <InputName
+                        onChange={this.handleChange}
+                        name="gender"
+                        type="text"
+                        placeholder="Gender"
+                        value={this.state.gender}
+                      />
+                    </b>
+                  </ParagraphStyle>
+                  <ParagraphStyle>
+                    <b>
+                      Age:{' '}
+                      <InputName
+                        onChange={this.handleChange}
+                        name="age"
+                        type="text"
+                        placeholder="Age"
+                        value={this.state.age}
+                      />
+                    </b>
+                  </ParagraphStyle>
+                  <ParagraphStyle>
+                    <b>
+                      Telephone Number:{' '}
+                      <InputName
+                        onChange={this.handleChange}
+                        name="phone"
+                        type="text"
+                        placeholder="Phone"
+                        value={this.state.phone}
+                      />
+                    </b>
+                  </ParagraphStyle>
+                  <ParagraphStyle>
+                    <b>
+                      City:{' '}
+                      <InputName
+                        type="text"
+                        onChange={this.handleChange}
+                        name="city"
+                        placeholder="City"
+                        value={this.state.city}
+                      />
+                    </b>
+                  </ParagraphStyle>
+                  <ParagraphStyle>
+                    <b>
+                      Address:{' '}
+                      <InputName
+                        type="text"
+                        onChange={this.handleChange}
+                        name="address"
+                        placeholder="Address"
+                        value={this.state.address}
+                      />
+                    </b>
+                  </ParagraphStyle>
+                </div>
+              </form>
             </TopRightContent>
           </TopContent>
         </Content>
@@ -222,8 +263,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.data,
-    trips: state.trips.data
+    user: state.user.data
   }
 }
 
