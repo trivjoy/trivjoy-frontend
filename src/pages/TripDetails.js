@@ -76,7 +76,7 @@ const UserCardDetails = styled.div`
   justify-content: left;
   margin-top: 20px;
 `
-const Description = styled.b`
+const Description = styled.span`
   margin-left: 10px;
   font-size: 18px;
 `
@@ -202,7 +202,7 @@ class TripDetails extends React.Component {
                         )
                       }
                       src="/assets/logo/correct-symbol.svg"
-                      alt=""
+                      alt="Correct Symbol"
                     />
                   </div>
                 )
@@ -246,18 +246,25 @@ class TripDetails extends React.Component {
 
           <Content>
             <TitleStyled>{this.props.trip.title}</TitleStyled>
-            <ImageCards src={this.props.trip.image} alt="" />
+            <ImageCards
+              src={this.props.trip.image}
+              alt={this.props.trip.title}
+            />
 
             <UserCardDetails>
               <ContentLeft>
-                <ProfileImage src="/assets/logo/man.svg" alt="" />
+                <ProfileImage
+                  src="/assets/logo/man.svg"
+                  alt={this.props.trip.author.name}
+                />
               </ContentLeft>
               <ContentRight>
                 <div>
                   <DescriptionTop>
                     <b>
-                      {this.props.trip.author.name},
-                      <b> {this.props.trip.author.age}</b>
+                      {this.props.trip.author.name},{' '}
+                      {this.props.trip.author.age},{' '}
+                      {this.props.trip.author.gender}
                     </b>
                     <div>
                       <LocationLogo
@@ -268,26 +275,25 @@ class TripDetails extends React.Component {
                         {this.props.trip.author.city}
                       </LocationStyle>
                     </div>
-                    <b>{this.props.trip.author.gender}</b>
                   </DescriptionTop>
                   <DescriptionBottom>
                     <LogoStyle src="/assets/logo/hammock.svg" alt="" />
                     <Description>
-                      Tour Destination: {this.props.trip.tourDestination}
+                      Location destination is {this.props.trip.tourDestination}
                     </Description>
                   </DescriptionBottom>
                   <DescriptionBottom>
                     <LogoStyle src="/assets/logo/calendar.svg" alt="" />
                     <Description>
-                      Date:{' '}
-                      {new Intl.DateTimeFormat('id-ID', {
+                      From{' '}
+                      {new Intl.DateTimeFormat('en-EN', {
                         weekday: 'long',
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
                       }).format(new Date(this.props.trip.dateFrom))}{' '}
-                      -{' '}
-                      {new Intl.DateTimeFormat('id-ID', {
+                      to{' '}
+                      {new Intl.DateTimeFormat('en-EN', {
                         weekday: 'long',
                         year: 'numeric',
                         month: 'long',
@@ -298,7 +304,7 @@ class TripDetails extends React.Component {
                   <DescriptionBottom>
                     <LogoStyle src="/assets/logo/purse.svg" alt="" />
                     <Description>
-                      Budget (IDR):
+                      Trip budget is around{' '}
                       {new Intl.NumberFormat('en-IND', {
                         style: 'currency',
                         currency: 'IDR',
@@ -309,17 +315,19 @@ class TripDetails extends React.Component {
                   <DescriptionBottom>
                     <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
                     <Description>
-                      People Can Join: {this.props.trip.peopleMin} -{' '}
-                      {this.props.trip.peopleMax}
+                      About {this.props.trip.peopleMin} -{' '}
+                      {this.props.trip.peopleMax} can join this trip
                     </Description>
                   </DescriptionBottom>
-                  <DescriptionBottom>
-                    <LogoStyle src="/assets/logo/success.svg" alt="" />
-                    <Description>
-                      Already Join: {this.props.trip.users_joined.length}
-                    </Description>
-                  </DescriptionBottom>
-                  <Description>Trip Discribe:</Description>
+                  {this.props.trip.users_joined.length > 0 && (
+                    <DescriptionBottom>
+                      <LogoStyle src="/assets/logo/success.svg" alt="" />
+                      <Description>
+                        {this.props.trip.users_joined.length} people already
+                        joined
+                      </Description>
+                    </DescriptionBottom>
+                  )}
                   <TripDiscribe>{this.props.trip.description}</TripDiscribe>
                 </div>
                 <ButtonRequest>
