@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactFilestack from 'filestack-react'
+import { Redirect } from 'react-router-dom'
+// import IntlCurrencyInput from 'react-intl-currency-input'
 import styled from 'styled-components'
 import { createTrips } from '../redux/actions/create-trips'
 import { connect } from 'react-redux'
@@ -203,6 +205,9 @@ class CreateTrip extends React.Component {
   }
 
   render() {
+    if (this.props.create_trips.success) {
+      return <Redirect to="/trips" />
+    }
     return (
       <Container>
         <Header />
@@ -271,7 +276,11 @@ class CreateTrip extends React.Component {
                 type="text"
                 name="budget"
                 onChange={this.handleChange}
-                placeholder="700000"
+                placeholder={new Intl.NumberFormat('en-IND', {
+                  style: 'currency',
+                  currency: 'IDR',
+                  maximumSignificantDigits: 3
+                }).format('700000')}
                 value={this.state.budget}
                 required
               />
