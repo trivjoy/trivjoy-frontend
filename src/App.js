@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
+import EditProfile from './pages/EditProfile'
 import Post from './pages/Post'
 import Trips from './pages/Trips'
 import About from './pages/About'
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
+          <Route path="/edit_profile" component={EditProfile} />
           <Route path="/post" component={Post} />
           <Route path="/about" component={About} />
           <Route path="/safety" component={Safety} />
