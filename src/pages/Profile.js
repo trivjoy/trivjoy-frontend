@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { getTrips } from '../redux/actions/trips'
+import { getTripDetails } from '../redux/actions/trip-details'
 import { Link } from 'react-router-dom'
 
 const Content = styled.div`
@@ -58,7 +59,6 @@ const ParagraphStyle = styled.p`
 const ChangeImageStyle = styled.b`
   color: #d71414;
   text-shadow: 1px 2px 4px #b7afaf;
-
   :hover {
     cursor: pointer;
   }
@@ -81,6 +81,9 @@ const ButtonEdit = styled.button`
     cursor: pointer;
     background-color: #fbfbfb;
   }
+  a {
+    text-decoration: none;
+  }
 `
 
 const BottomContent = styled.div`
@@ -93,27 +96,65 @@ const Div = styled.div`
   margin: 0 auto;
 `
 
-const MyCardContent = styled.div``
+const MyCardContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  padding-left: 15%;
+  padding-right: 15%;
+`
 
 const MyCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   width: 250px;
-  margin: 0px 20px;
-  height: 300px;
+  margin: 10px 23px;
+  height: 180px;
   border: 1px solid black;
   font-size: 14px;
+  border-radius: 5px;
 `
-const AboutMe = styled.b`
+const MyTripStyle = styled.b`
   width: 718px;
   margin-bottom: 5px;
+  font-size: 20px;
+`
+const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 5px 5px 0px 0px;
+  background-color: #5bb9fd;
+`
+const CardDetails = styled.div`
+  margin: 5px 0px 5px 0px;
+`
+const ViewButton = styled.button`
+  width: 70px;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 16px;
+  border-radius: 3px;
+  background-color: #f1c84b;
+  :hover {
+    cursor: pointer;
+  }
 `
 
 class Profile extends React.Component {
   componentDidMount = async () => {
     this.props.dispatch(getTrips())
   }
+
   render() {
-    // const Male = '/assets/logo/man.svg'
-    // const Female = '/assets/logo/'
+    const mytrip =
+      this.props.trips &&
+      this.props.trips.filter(trip => trip.author._id === this.props.user._id)
 
     return (
       <Container>
@@ -165,27 +206,54 @@ class Profile extends React.Component {
           </TopContent>
           <BottomContent>
             <Div>
-              <AboutMe>My Trip</AboutMe>
+              <MyTripStyle>My Trip</MyTripStyle>
             </Div>
-
             <MyCardContent>
-              <MyCard>
-                <div>
-                  <b> Title </b>
-                </div>
-                <div>
-                  <b>Tour Destination</b>
-                </div>
-                <div>
-                  <b>DateFrom - DateTo</b>
-                </div>
-                <div>
-                  <b>Request Join: </b>
-                </div>
-                <div>
-                  <b>Alredy Join:</b>
-                </div>
-              </MyCard>
+              {mytrip.map((item, index) => {
+                return (
+                  <MyCard key={index}>
+                    <Title>
+                      <b>{item.title}</b>
+                    </Title>
+                    <CardDetails>
+                      <b>{item.TourDestination}</b>
+                    </CardDetails>
+                    <CardDetails>
+                      <b>
+                        {new Intl.DateTimeFormat('id-ID', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        }).format(new Date(item.dateFrom))}{' '}
+                        -{' '}
+                        {new Intl.DateTimeFormat('id-ID', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        }).format(new Date(item.dateTo))}
+                      </b>
+                    </CardDetails>
+                    <CardDetails>
+                      <b>
+                        Request Join: {item.peopleMin} - {item.peopleMax}
+                      </b>
+                    </CardDetails>
+                    <CardDetails>
+                      <b>Already Join: {item.users_joined.length}</b>
+                    </CardDetails>
+                    <div>
+                      <ViewButton
+                        onClick={() => {
+                          this.props.dispatch(getTripDetails())
+                          this.props.history.push(`/trips/${item.id}`)
+                        }}
+                      >
+                        <b>View</b>
+                      </ViewButton>
+                    </div>
+                  </MyCard>
+                )
+              })}{' '}
             </MyCardContent>
           </BottomContent>
         </Content>
