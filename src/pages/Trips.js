@@ -133,7 +133,14 @@ class Trips extends React.Component {
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/purse.svg" alt="" />
-                    <b>Budget (IDR): {item.budget}</b>
+                    <b>
+                      Budget (IDR):{' '}
+                      {new Intl.NumberFormat('en-IND', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        maximumSignificantDigits: 3
+                      }).format(item.budget)}
+                    </b>
                   </DiscribeBottomCards>
                   <DiscribeBottomCards>
                     <LogoStyle src="/assets/logo/waiting-room.svg" alt="" />
