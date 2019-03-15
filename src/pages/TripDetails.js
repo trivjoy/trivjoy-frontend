@@ -104,13 +104,7 @@ const ButtonRequest = styled.div`
   display: flex;
   justify-content: center;
 `
-// const RequestContent = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   margin: 0px auto;
-//   width: 100%;
-// `
+
 const ApprovedAndWaiting = styled.b`
   font-size: 18px;
 `
