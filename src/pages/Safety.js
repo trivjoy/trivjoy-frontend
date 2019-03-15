@@ -35,7 +35,7 @@ const InformationColumn = styled.div`
   font-weight: normal;
   line-height: normal;
 `
-const Help = () => {
+const Safety = () => {
   return (
     <Container>
       <Header />
@@ -92,4 +92,4 @@ const Help = () => {
   )
 }
 
-export default Help
+export default Safety
