@@ -292,16 +292,14 @@ class TripDetails extends React.Component {
                       {this.props.trip.author.age},{' '}
                       {this.props.trip.author.gender}
                     </b>
-                    <div>
-                      <LocationLogo
-                        src="/assets/logo/maps-and-flags.svg"
-                        alt=""
-                      />
-                      <LocationStyle>
-                        {this.props.trip.author.city}
-                      </LocationStyle>
-                    </div>
                   </DescriptionTop>
+                  <div>
+                    <LocationLogo
+                      src="/assets/logo/maps-and-flags.svg"
+                      alt="Map Pin"
+                    />{' '}
+                    <LocationStyle>{this.props.trip.author.city}</LocationStyle>
+                  </div>
                   <DescriptionBottom>
                     <LogoStyle src="/assets/logo/hammock.svg" alt="" />
                     <Description>
