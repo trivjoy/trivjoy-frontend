@@ -9,8 +9,7 @@ import { approveJoin } from '../redux/actions/approveJoin'
 
 const Content = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin: 30px auto;
   width: 800px;
   align-self: center;
   border-radius: 5px;
@@ -119,8 +118,9 @@ const ApprovedAndWaitingPosition = styled.div`
 `
 
 const ApproveSymbol = styled.img`
-  height: 25px;
-  width: 25px;
+  height: 15px;
+  width: 15px;
+  margin-left: 10px;
   :hover {
     cursor: pointer;
   }
@@ -222,12 +222,14 @@ class TripDetails extends React.Component {
               {this.props.trip.users_requested.map((item, index) => {
                 return (
                   <div key={index}>
-                    {item.name}
+                    <UserApproved>{item.name}</UserApproved>
                     <ApproveSymbol
-                      onClick={() =>
-                        this.props.dispatch(
-                          approveJoin(this.props.trip.id, item._id)
-                        )
+                      onClick={
+                        (() =>
+                          this.props.dispatch(
+                            approveJoin(this.props.trip.id, item._id)
+                          ),
+                        this.refresh())
                       }
                       src="/assets/logo/correct-symbol.svg"
                       alt="Correct Symbol"
@@ -289,17 +291,22 @@ class TripDetails extends React.Component {
                   <DescriptionTop>
                     <b>
                       {this.props.trip.author.name},{' '}
-                      {this.props.trip.author.age},{' '}
-                      {this.props.trip.author.gender}
+                      {this.props.trip.author.age}{' '}
                     </b>
+                    <div>
+                      <b>{this.props.trip.author.gender}</b>
+                    </div>
+                    <div>
+                      <LocationLogo
+                        src="/assets/logo/maps-and-flags.svg"
+                        alt="Map Pin"
+                      />{' '}
+                      <LocationStyle>
+                        {this.props.trip.author.city}
+                      </LocationStyle>
+                    </div>
                   </DescriptionTop>
-                  <div>
-                    <LocationLogo
-                      src="/assets/logo/maps-and-flags.svg"
-                      alt="Map Pin"
-                    />{' '}
-                    <LocationStyle>{this.props.trip.author.city}</LocationStyle>
-                  </div>
+
                   <DescriptionBottom>
                     <LogoStyle src="/assets/logo/hammock.svg" alt="" />
                     <Description>

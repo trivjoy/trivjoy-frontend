@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactFilestack from 'filestack-react'
-// import { Redirect } from 'react-router-dom'
-// import IntlCurrencyInput from 'react-intl-currency-input'
 import styled from 'styled-components'
 import { createTrips } from '../redux/actions/create-trips'
 import { connect } from 'react-redux'
@@ -287,10 +285,10 @@ class CreateTrip extends React.Component {
               <MarginInput>
                 {filestackApiKey && (
                   <ReactFilestack
-                    apikey={filestackApiKey} // preconfigured
-                    options={filestackOptions} // preconfigured
-                    onSuccess={this.onSuccess} // preconfigured
-                    onError={this.onError} // preconfigured
+                    apikey={filestackApiKey}
+                    options={filestackOptions}
+                    onSuccess={this.onSuccess}
+                    onError={this.onError}
                     preload={true}
                     render={({ onPick }) => (
                       <UploadButtonStyled onClick={onPick}>
