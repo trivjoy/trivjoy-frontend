@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 
 const HomeContent = styled.div`
-  margin: 0px 120px;
+  margin: 0 auto;
 `
 const LogoStyle = styled.img`
   height: 38px;
@@ -15,12 +15,28 @@ const YouShouldGoTravelling = styled.b`
   display: flex;
   font-size: 25px;
   margin: 0px auto;
+  @media all and (max-width: 1200px) {
+    font-size: 25px;
+  }
+  @media all and (max-width: 992px) {
+    font-size: 23px;
+  }
+  @media all and (max-width: 768px) {
+    font-size: 21px;
+  }
+  @media all and (max-width: 600px) {
+    font-size: 18px;
+  }
+  @media all and (max-width: 400px) {
+    font-size: 16px;
+  }
 `
 const CardHome = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 20px 20px 20px 20px;
+  margin: 20px 20px 20px 0px;
   display: flex;
   justify-content: center;
+  align-items: center;
   text-align: left;
   width: 306px;
   height: 230px;
@@ -28,6 +44,21 @@ const CardHome = styled.div`
   border: 1px grey;
   background-color: #5bb9fd;
   color: white;
+  @media all and (max-width: 1020px) {
+    width: 360px;
+    height: 230px;
+    margin-left: 0px;
+  }
+  @media all and (max-width: 780px) {
+    width: 600px;
+    height: 230px;
+    margin-right: 0px;
+  }
+  @media all and (max-width: 620px) {
+    width: 380px;
+    height: 230px;
+    margin-right: 0px;
+  }
 `
 const CardSection1 = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -46,10 +77,25 @@ const CardSection1 = styled.div`
       rgba(51, 51, 51, 0.8)
     ),
     url('/assets/images/first-section-1.jpg');
+  @media all and (max-width: 1020px) {
+    width: 360px;
+    height: 230px;
+    margin-right: 0px;
+  }
+  @media all and (max-width: 780px) {
+    width: 600px;
+    height: 230px;
+    margin-left: 0px;
+  }
+  @media all and (max-width: 620px) {
+    width: 380px;
+    height: 230px;
+    margin-left: 0px;
+  }
 `
 const CardSection2 = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 20px 20px 20px 20px;
+  margin: 20px 0px 20px 20px;
   display: flex;
   justify-content: center;
   text-align: left;
@@ -64,11 +110,26 @@ const CardSection2 = styled.div`
       rgba(51, 51, 51, 0.8)
     ),
     url('/assets/images/first-section-2.jpg');
+  @media all and (max-width: 1020px) {
+    width: 360px;
+    height: 230px;
+    margin: 20px 20px 20px 0px;
+  }
+  @media all and (max-width: 780px) {
+    width: 600px;
+    height: 230px;
+    margin-right: 0px;
+  }
+  @media all and (max-width: 620px) {
+    width: 380px;
+    height: 230px;
+    margin-right: 0px;
+  }
 `
 
 const CardSection3 = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 20px 20px 20px 20px;
+  margin: 20px 20px 20px 0px;
   display: flex;
   justify-content: center;
   text-align: left;
@@ -83,6 +144,21 @@ const CardSection3 = styled.div`
       rgba(51, 51, 51, 0.8)
     ),
     url('/assets/images/first-section-3.jpg');
+  @media all and (max-width: 1020px) {
+    width: 360px;
+    height: 230px;
+    margin: 20px 0px 20px 20px;
+  }
+  @media all and (max-width: 780px) {
+    width: 600px;
+    height: 230px;
+    margin: 20px 0px;
+  }
+  @media all and (max-width: 620px) {
+    width: 380px;
+    height: 230px;
+    margin: 20px 0px;
+  }
 `
 
 const CardSection4 = styled.div`
@@ -102,11 +178,26 @@ const CardSection4 = styled.div`
       rgba(51, 51, 51, 0.8)
     ),
     url('/assets/images/first-section-4.jpg');
+  @media all and (max-width: 1020px) {
+    width: 360px;
+    height: 230px;
+    margin: 20px 20px 20px 0px;
+  }
+  @media all and (max-width: 780px) {
+    width: 600px;
+    height: 230px;
+    margin: 20px 0px;
+  }
+  @media all and (max-width: 620px) {
+    width: 380px;
+    height: 230px;
+    margin: 20px 0px;
+  }
 `
 
 const CardSection5 = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 20px 20px 20px 20px;
+  margin: 20px 0px 20px 20px;
   display: flex;
   justify-content: center;
   text-align: left;
@@ -121,6 +212,20 @@ const CardSection5 = styled.div`
       rgba(51, 51, 51, 0.8)
     ),
     url('/assets/images/first-section-5.jpg');
+  @media all and (max-width: 1020px) {
+    width: 360px;
+    height: 230px;
+  }
+  @media all and (max-width: 780px) {
+    width: 600px;
+    height: 230px;
+    margin: 20px 0px;
+  }
+  @media all and (max-width: 620px) {
+    width: 380px;
+    height: 230px;
+    margin: 20px 0px;
+  }
 `
 
 const CardDetailStarter = styled.b`
@@ -134,26 +239,51 @@ const CardDetails = styled.div`
 const CardHomeContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
+  @media all and (max-width: 1020px) {
+    width: 760px;
+    margin: 0 auto;
+  }
+  @media all and (max-width: 780px) {
+    width: 600px;
+    margin: 0 auto;
+  }
+  @media all and (max-width: 620px) {
+    width: 380px;
+    margin: 0 auto;
+  }
 `
-const SecondStyle = styled.b`
-  margin: 0px 0px 0px 20px;
-  font-size: 20px;
-  color: #2f80ed;
-`
-const FirstandThirdStyle = styled.b`
+
+const FirstSecondThirdStyle = styled.b`
   font-size: 20px;
   color: #2f80ed;
 `
 
 const FirstContent = styled.div`
-  margin-left: 20px;
+  margin: 0 auto;
   margin-top: 40px;
-  width: 1000px;
+  max-width: 1000px;
+  @media all and (max-width: 1020px) {
+    margin: 20px 10px 0px 10px;
+  }
+`
+const SecondContent = styled.div`
+  margin: 0px auto;
+  margin-top: 40px;
+  max-width: 1000px;
+  @media all and (max-width: 1020px) {
+    margin: 20px 10px 0px 10px;
+  }
 `
 const ThirdContent = styled.div`
-  margin: 20px 0px 40px 20px;
-  width: 1000px;
+  margin: 0px auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  max-width: 1000px;
+  @media all and (max-width: 1020px) {
+    margin: 20px 10px 40px 10px;
+  }
 `
 const CardThirdContent = styled.div`
   display: flex;
@@ -174,6 +304,13 @@ const CardThirdDiscribe = styled.div`
   flex-direction: column;
   margin: 30px auto;
   text-align: center;
+  font-size: 16px;
+  @media all and (max-width: 992px) {
+    font-size: 14px;
+  }
+  @media all and (max-width: 768px) {
+    font-size: 12px;
+  }
 `
 
 const FirstDiscribeContent = styled.div`
@@ -197,18 +334,40 @@ const NumberCard = styled.h3`
   color: white;
 `
 
-const ParagraphCard = styled.p`
-  margin: 10px auto;
-`
+const ParagraphCard = styled.p``
 
 const LogoThirdSection = styled.img`
   height: 70px;
   width: 70px;
   margin: 10px auto;
+  @media all and (max-width: 992px) {
+    height: 60px;
+    width: 60px;
+  }
+  @media all and (max-width: 768px) {
+    height: 50px;
+    width: 50px;
+  }
+  @media all and (max-width: 600px) {
+    height: 45px;
+    width: 45px;
+  }
 `
 const NextLogo = styled.img`
   height: 40px;
   width: 40px;
+  @media all and (max-width: 992px) {
+    height: 40px;
+    width: 40px;
+  }
+  @media all and (max-width: 768px) {
+    height: 30px;
+    width: 30px;
+  }
+  @media all and (max-width: 600px) {
+    height: 25px;
+    width: 25px;
+  }
 `
 const LearnMorePosition = styled.div`
   display: flex;
@@ -229,21 +388,24 @@ const LearnMoreButton = styled.button`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 `
+const Container = styled.div`
+  margin: 0px auto;
+`
 
 const Home = () => {
   return (
-    <div>
+    <Container>
       <HeaderHome />
       <HomeContent>
         <FirstContent>
-          <FirstandThirdStyle>First,</FirstandThirdStyle>
+          <FirstSecondThirdStyle>First,</FirstSecondThirdStyle>
           <ParagraphCard>
             <b>Why You Should Travel?</b>
           </ParagraphCard>
 
           <FirstDiscribeContent>
             <YouShouldGoTravelling>
-              <LogoStyle src="/assets/logo/checklist-home.png" alt="" />
+              <LogoStyle src="/assets/logo/checklist-home.png" />
               Doesn’t have friends for traveling?
             </YouShouldGoTravelling>
 
@@ -258,8 +420,9 @@ const Home = () => {
             </YouShouldGoTravelling>
           </FirstDiscribeContent>
         </FirstContent>
-        <div>
-          <SecondStyle>Second,</SecondStyle>
+        <SecondContent>
+          <FirstSecondThirdStyle>Second,</FirstSecondThirdStyle>
+
           <CardHomeContainer>
             <CardHome>
               <CardDetailStarter>
@@ -325,9 +488,9 @@ const Home = () => {
               </CardDetails>
             </CardSection5>
           </CardHomeContainer>
-        </div>
+        </SecondContent>
         <ThirdContent>
-          <FirstandThirdStyle>Third,</FirstandThirdStyle>
+          <FirstSecondThirdStyle>Third,</FirstSecondThirdStyle>
           <ParagraphCard>
             <b>How Trivjoy Can Help You?</b>
           </ParagraphCard>
@@ -366,7 +529,7 @@ const Home = () => {
         </ThirdContent>
       </HomeContent>
       <Footer />
-    </div>
+    </Container>
   )
 }
 
